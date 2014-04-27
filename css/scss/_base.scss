@@ -1,0 +1,367 @@
+﻿
+/* ---------------------------------------- Site ---------------------------------------- */
+
+* {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+}
+html {
+	height: 100%;
+	min-width: 320px;
+	overflow-y: scroll;
+}
+body {
+	color: #1F1F1F;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 100%; /* 16px */
+	line-height: 1.250; /* 20px */
+	height: 100%;
+}
+
+
+
+/* ---------------------------------------- Base ---------------------------------------- */
+
+/*  This section generally sets out the basic styles for the page.
+	Headings, lists, anchors etc are specificed here */
+
+
+/* --------------------------- Headings */
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4 {
+	display: block;
+	text-rendering: optimizeLegibility;
+}
+
+h1, .h1 {
+	font-size: 2em; /* 32px */
+	font-weight: bold;
+	line-height: 1; /* 32px */
+}
+h2, .h2 {
+	font-size: 1.5em; /* 24px */
+	line-height: 1; /* 24px */
+}
+h3, .h3 {
+	font-size: 1.125em; /* 18px */
+	font-weight: bold;
+	line-height: 1; /* 18px */
+}
+h4, .h4 {
+}
+
+
+/* --------------------------- Paragraph */
+p, .p {
+	font-size: 0.875em; /* 14px */
+	line-height: 1.429; /* 20px */
+	margin: 0 0 1.25em; /* 0 0 20px */
+}
+
+
+/* --------------------------- Links */
+a {
+	color: #0082c8;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	@include transition(color, 150ms, ease-out, 0s);
+}
+a:hover,
+a:focus {
+	text-decoration: underline;
+}
+
+
+/* --------------------------- List */
+ul, ol {
+	font-size: 0.875em; /* 14px */
+	line-height: 1.429; /* 20px */
+	margin: 0 0 1.25em; /* 0 0 20px */
+	zoom: 1;
+}
+ul {
+	list-style: none;
+}
+
+ul li {
+	margin: 0 0 10px;
+	padding: 0 0 0 12px;
+	zoom: 1;
+}
+ol li {
+	margin: 0 0 10px 25px;
+}
+
+li > ul,
+li > ol {
+	font-size: 1em; /* 16px */
+	margin-top: 12px;
+	margin-bottom: 0;
+}
+
+ol li ul li {
+	margin-left: 0;
+}
+ul li ol li {
+	background: none;
+	padding: 0;
+}
+
+
+/* ---------- List reset */
+.list_reset {
+	font-size: 1em; /* 16px */
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.list_reset li {
+	background: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* ---------- List inline */
+.list_inline {
+	overflow: hidden;
+}
+.list_inline li {
+	float: left;
+}
+
+
+/* --------------------------- Blockquote */
+blockquote {
+	font-size: 1.5em; /* 24px */
+	line-height: 1; /* 24px */
+	margin: 0 0 20px;
+	text-align: center;
+}
+cite {
+}
+
+
+/* --------------------------- Horizontal rule */
+hr, .hr {
+	display: block;
+	width: 100%;
+	height: 1px;
+	margin-bottom: 15px;
+	font-size: 0;
+	line-height: 0;
+	border: none;
+	border-bottom: 1px solid #999;
+}
+
+
+/* --------------------------- Highlight state */
+::-moz-selection {
+	background: rgba(0, 130, 200, 1); /* #0082c8 */
+	color: #fff;
+	text-shadow: none;
+}
+::selection {
+	background: rgba(0, 130, 200, 1); /* #0082c8 */
+	color: #fff;
+	text-shadow: none;
+}
+
+
+
+/* ---------------------------------------- Site layout ---------------------------------------- */
+
+/*  Main parent wrappers to contain all site elements,
+	and define sticky footer styles if required */
+
+.main_content {
+	overflow: hidden;
+	position: relative;
+}
+
+
+/* ---------------------------------------- Navigation ---------------------------------------- */
+
+/*  All navigation elemets are listed here. This includes
+	header, left, right and footer navigation as well as
+	any other basic navigation blocks that might appear. */
+
+
+/* ---------------------------- Primary nav */
+.nav_primary {
+	margin: 0 0 20px;
+}
+.nav_primary > li {
+	float: left;
+}
+.nav_primary > li a {
+	display: block;
+}
+.nav_primary .current > a {
+	color: red;
+}
+
+
+/* --------------------------- Secondary nav */
+.nav_secondary {
+	margin: 0 0 20px;
+}
+.nav_secondary > li {
+	float: left;
+}
+.nav_secondary > li a {
+	display: block;
+}
+.nav_secondary .current > a {
+	color: red;
+}
+
+/* ---------- second level */
+.nav_secondary > li > ul {
+	border-top: 1px solid #d0d2d3;
+}
+
+/* ---------- second level and following */
+.nav_secondary > li ul {
+	padding: 4px 0;
+}
+.nav_secondary > li ul > li {
+	padding: 0 0 0 15px;
+}
+
+
+/* --------------------------- Support nav */
+.nav_support {
+}
+.nav_support li {
+}
+.nav_support .current {
+}
+
+
+
+/* ---------------------------------------- Header ---------------------------------------- */
+
+.header {
+	position: relative;
+	margin: 0 0 10px;
+}
+
+/* --------------------------- Logo */
+.logo {
+}
+
+
+
+/* ---------------------------------------- Footer ---------------------------------------- */
+
+.footer {
+}
+.push {
+}
+
+
+
+/* ---------------------------------------- Heroes ---------------------------------------- */
+
+.hero {
+}
+
+
+
+/* ---------------------------------------- Lists ---------------------------------------- */
+
+.list_links {
+}
+.list_bordered {
+}
+
+
+
+/* ---------------------------------------- Links/Buttons ---------------------------------------- */
+
+/* standard button */
+.button {
+	border: 1px solid #CCC;
+	display: inline-block;
+	padding: 5px 7px;
+	text-align: center;
+}
+.button:hover,
+.button:focus {
+	background: #7B7B7B;
+}
+
+
+
+/* ---------------------------------------- Modules ---------------------------------------- */
+
+.module {
+	position: relative;
+}
+
+
+
+/* ---------------------------------------- Media block ---------------------------------------- */
+
+.media,
+.media .media_bd {
+	overflow: hidden;
+	zoom: 1;
+}
+.media .media_l {
+	float: left;
+	margin: 0 20px 20px 0;
+}
+.media .media_r {
+	float: right;
+	margin: 0 0 20px 20px;
+}
+
+
+
+/* ---------------------------------------- Forms ---------------------------------------- */
+
+form {
+	position: relative;
+	zoom: 1;
+}
+
+/* hover/focus - for accessbility, include new style to overwrite default */
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 0;
+}
+
+input,
+textarea {
+	border: 1px solid #E8E8E8;
+	font-size: 0.875em; /* 14px */
+	margin: 0 0 15px;
+	padding: 8px;
+	width: 100%;
+}
+
+
+
+/* ---------------------------------------- Table ---------------------------------------- */
+
+table {
+	width: 100%;
+	font-size: 0.75em; /* 12px */
+	line-height: 1.5; /* 18px */
+	margin-bottom: 15px;
+}
+table td {
+	padding: 7px 10px 6px 0;
+	border-bottom: 1px solid #eeeae1;
+}
+
+
+
+/* ---------------------------------------- Videos ---------------------------------------- */
+
+/*  Include if Brightcove or JS based video players are used */
+

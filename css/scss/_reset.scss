@@ -1,0 +1,64 @@
+﻿/* ---------------------------------------- Reset ---------------------------------------- */
+
+blockquote, body, button, caption, cite, dd, dl, fieldset, form, h1, h2, h3, h4, h5, h6, hr,
+iframe, input, legend, li, ol, p, pre, select, tbody, td, textarea, tfoot, th, thead, tr, ul {
+	border: 0;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+h1, h2, h3, h4 {
+	font-weight: normal;
+}
+cite {
+	font-style: normal;
+}
+small {
+	font-size: 80%;
+}
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+img {
+	border: 0;
+	height: auto;
+	max-width: 100%;
+	vertical-align: middle;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: left;
+}
+td, th {
+	text-align: inherit;
+	vertical-align: top;
+}
+td img,
+iframe,
+.lt_ie8 img {
+	vertical-align: top;
+}
+button,
+label,
+select,
+input,
+textarea {
+	color: inherit;
+	display: block;
+	font: inherit;
+}
+textarea {
+	overflow: auto;
+	resize: vertical;
+}

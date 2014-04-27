@@ -1,0 +1,52 @@
+﻿
+/* ---------------------------------------- Variables ---------------------------------------- */
+/* Typography baseline (in px/ratio) */
+$docFontSize: 16;
+$docLineHeight: 1.25; /* 20px */
+
+/* Font stacks */
+$baseFont: Arial, Helvetica, sans-serif;
+$sansFont: Verdana, Arial, Helvetica, sans-serif;
+$serifFont: Georgia, Times, serif;
+
+/* Breakpoints (in px) */
+$lap: 725;
+$desk: 1020;
+
+
+/* ---------------------------------------- Mixins ---------------------------------------- */
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+			border-radius: $radius;
+}
+
+@mixin box-shadow($top, $left, $blur, $spread, $color, $inset: false) {
+	@if $inset {
+		-webkit-box-shadow:inset $top $left $blur $spread $color;
+		-moz-box-shadow:inset $top $left $blur $spread $color;
+		box-shadow:inset $top $left $blur $spread $color;
+	} @else {
+		-webkit-box-shadow: $top $left $blur $spread $color;
+		-moz-box-shadow: $top $left $blur $spread $color;
+		box-shadow: $top $left $blur $spread $color;
+	}
+}
+
+@mixin transition($property, $duration, $easing, $delay) {
+	-webkit-transition: $property $duration $easing $delay;
+	   -moz-transition: $property $duration $easing $delay;
+	     -o-transition: $property $duration $easing $delay;
+			transition: $property $duration $easing $delay;
+}
+
+/*
+	MEDIA QUERY
+	$point: breakpoint integer in px
+	$constraint: Constraint for media query (min/max)
+	$feature: Media feature of query (width/height)
+*/
+@mixin mq($point, $constraint: min, $feature: width) {
+	@media screen and (#{$constraint}-#{$feature}: $point / $docFontSize + em) {
+		@content;
+	}
+}
