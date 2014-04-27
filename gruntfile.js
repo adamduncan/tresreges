@@ -29,6 +29,17 @@
 				}
 			}
 		},
+		uncss: {
+			dist: {
+				files: {
+					'css/style.css': ['index.html']
+				}
+			},
+			options: {
+				ignore: [/^.svg/, /^.no-svg/, /^.js/, /^.no-js/, '::-moz-selection', '::selection'],
+				ignoreSheets: [/fonts.googleapis/]
+			}
+		},
 		cssmin: {
 			add_banner: {
 				options: {
@@ -91,12 +102,14 @@
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-combine-media-queries');
+	grunt.loadNpmTasks('grunt-uncss');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Default task(s).
-	grunt.registerTask('default', ['sass', 'cmq', 'cssmin', 'concat', 'jshint', 'uglify']);
+	grunt.registerTask('default', ['sass', 'cmq', 'concat', 'jshint']);
+	grunt.registerTask('build', ['sass', 'cmq', 'uncss', 'cssmin', 'concat', 'jshint', 'uglify']);
 
 };

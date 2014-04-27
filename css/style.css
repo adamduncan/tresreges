@@ -1,0 +1,1043 @@
+/*
+	CSS Document for XXXXXXX
+	Build: XXXX XXXXXXX on behalf of SAS
+	Date: March 2014
+	Version: 3.1.0
+*/
+
+/* bulletproof font-face syntax */
+
+@font-face {
+	font-family: 'Bebas Neue';
+	src: url("/css/bebasneue-webfont.eot");
+	src: url("/css/bebasneue-webfont.eot?#iefix") format("embedded-opentype"), url("/css/bebasneue-webfont.woff") format("woff"), url("/css/bebasneue-webfont.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* vars/mixins for sass and css reset */
+
+/* ---------------------------------------- Variables ---------------------------------------- */
+
+/* Typography baseline (in px/ratio) */
+
+/* 20px */
+
+/* Font stacks */
+
+/* Breakpoints (in px) */
+
+/* ---------------------------------------- Mixins ---------------------------------------- */
+
+/*
+	MEDIA QUERY
+	$point: breakpoint integer in px
+	$constraint: Constraint for media query (min/max)
+	$feature: Media feature of query (width/height)
+*/
+
+/* ---------------------------------------- Reset ---------------------------------------- */
+
+blockquote,
+body,
+button,
+caption,
+cite,
+dd,
+dl,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+iframe,
+input,
+legend,
+li,
+ol,
+p,
+pre,
+select,
+tbody,
+td,
+textarea,
+tfoot,
+th,
+thead,
+tr,
+ul {
+	border: 0;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-weight: normal;
+}
+
+cite {
+	font-style: normal;
+}
+
+small {
+	font-size: 80%;
+}
+
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+img {
+	border: 0;
+	height: auto;
+	max-width: 100%;
+	vertical-align: middle;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: left;
+}
+
+td,
+th {
+	text-align: inherit;
+	vertical-align: top;
+}
+
+td img,
+iframe,
+.lt_ie8 img {
+	vertical-align: top;
+}
+
+button,
+label,
+select,
+input,
+textarea {
+	color: inherit;
+	display: block;
+	font: inherit;
+}
+
+textarea {
+	overflow: auto;
+	resize: vertical;
+}
+
+/* base styles */
+
+/* ---------------------------------------- Grid ---------------------------------------- */
+
+/* --------------------------- Wrapper */
+
+.wrapper {
+	margin: 0 auto;
+	padding: 0 1.25em; /* 0 20px */
+	position: relative;
+	width: 100%;
+}
+
+/* ---------------------------------------- Site ---------------------------------------- */
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+	min-width: 320px;
+	overflow-y: scroll;
+}
+
+body {
+	color: #000;
+	font-family: "Rosario", Arial, Helvetica, sans-serif, Helvetica, Arial, sans-serif;
+	font-size: 100%; /* 16px */
+	line-height: 1.250; /* 20px */
+	height: 100%;
+}
+
+/* ---------------------------------------- Base ---------------------------------------- */
+
+/*  This section generally sets out the basic styles for the page.
+	Headings, lists, anchors etc are specificed here */
+
+/* --------------------------- Headings */
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+	display: block;
+	text-rendering: optimizeLegibility;
+}
+
+h1,
+.h1 {
+	font-size: 2em; /* 32px */
+	font-weight: bold;
+	line-height: 1; /* 32px */
+}
+
+h2,
+.h2 {
+	font-family: "Bebas Neue", Arial, Helvetica, sans-serif;
+	font-size: 5em; /* 80px */
+	letter-spacing: 0.075em; /* 6px */
+	line-height: 1; /* 80px */
+	text-align: center;
+	text-transform: uppercase;
+}
+
+h3,
+.h3 {
+	font-size: 1.125em; /* 18px */
+	font-weight: bold;
+	line-height: 1; /* 18px */
+}
+
+/* --------------------------- Paragraph */
+
+p,
+.p {
+	font-size: 0.875em; /* 14px */
+	line-height: 1.429; /* 20px */
+	margin: 0 0 1.25em; /* 0 0 20px */
+}
+
+/* --------------------------- Links */
+
+a {
+	color: #0082c8;
+	text-decoration: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-transition: color 150ms ease-out 0s;
+	-moz-transition: color 150ms ease-out 0s;
+	-o-transition: color 150ms ease-out 0s;
+	transition: color 150ms ease-out 0s;
+}
+
+/* --------------------------- List */
+
+ul,
+ol {
+	font-size: 0.875em; /* 14px */
+	line-height: 1.429; /* 20px */
+	margin: 0 0 1.25em; /* 0 0 20px */
+	zoom: 1;
+}
+
+ul {
+	list-style: none;
+}
+
+ul li {
+	margin: 0 0 10px;
+	padding: 0 0 0 12px;
+	zoom: 1;
+}
+
+ol li {
+	margin: 0 0 10px 25px;
+}
+
+li > ul,
+li > ol {
+	font-size: 1em; /* 16px */
+	margin-top: 12px;
+	margin-bottom: 0;
+}
+
+ol li ul li {
+	margin-left: 0;
+}
+
+ul li ol li {
+	background: none;
+	padding: 0;
+}
+
+/* ---------- List reset */
+
+.list_reset {
+	font-size: 1em; /* 16px */
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.list_reset li {
+	background: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* ---------- List inline */
+
+.list_inline {
+	overflow: hidden;
+}
+
+.list_inline li {
+	float: left;
+}
+
+/* --------------------------- Blockquote */
+
+blockquote {
+	font-size: 1.5em; /* 24px */
+	line-height: 1; /* 24px */
+	margin: 0 0 20px;
+	text-align: center;
+}
+
+/* --------------------------- Horizontal rule */
+
+hr,
+.hr {
+	display: block;
+	width: 100%;
+	height: 1px;
+	margin-bottom: 15px;
+	font-size: 0;
+	line-height: 0;
+	border: none;
+	border-bottom: 1px solid #999;
+}
+
+/* --------------------------- Highlight state */
+
+::-moz-selection {
+	background: #0082c8; /* #0082c8 */
+	color: #fff;
+	text-shadow: none;
+}
+
+::selection {
+	background: #0082c8; /* #0082c8 */
+	color: #fff;
+	text-shadow: none;
+}
+
+/* ---------------------------------------- Site layout ---------------------------------------- */
+
+/*  Main parent wrappers to contain all site elements,
+	and define sticky footer styles if required */
+
+.section {
+	background-position: center 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-top: 3.75em; /* 60px */
+	width: 100%;
+}
+
+.section .wrapper {
+	position: relative;
+	top: 50%;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transform: translate(0, -50%);
+	-moz-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
+	-o-transform: translate(0, -50%);
+	transform: translate(0, -50%);
+}
+
+/* ---------------------------------------- Navigation ---------------------------------------- */
+
+/*  All navigation elemets are listed here. This includes
+	header, left, right and footer navigation as well as
+	any other basic navigation blocks that might appear. */
+
+/* ---------------------------- Primary nav */
+
+.nav_primary {
+	font-size: 1.125em; /* 18px */
+	font-style: italic;
+	line-height: 1.333em; /* 24px */
+	margin-top: 0.778em; /* 14px */
+}
+
+.nav_primary > li {
+	float: left;
+	padding: 0 1.333em; /* 0 24px */
+	position: relative;
+	text-align: center;
+	width: 50%;
+}
+
+.nav_primary > li:last-child {
+	margin: 0;
+}
+
+.nav_primary > li a {
+	color: #000;
+	display: block;
+}
+
+.nav_primary a:hover,
+.nav_primary a:focus,
+.nav_primary .current {
+	color: #3565ad;
+}
+
+/* ---------------------------------------- Header ---------------------------------------- */
+
+.header {
+	background-color: rgba(255, 255, 255, 0.8);
+	overflow: hidden;
+	padding: 0.75em 0; /* 12px 0 */
+	text-align: center;
+	width: 100%;
+}
+
+/* --------------------------- Logo */
+
+.logo {
+	display: block;
+	font-family: "Bebas Neue", Arial, Helvetica, sans-serif;
+	font-size: 2.375em; /* 38px */
+	letter-spacing: 0.105em; /* 4px */
+	line-height: 1;
+	margin: 0 auto;
+	padding-left: 2em; /* 76px */
+	text-transform: uppercase;
+}
+
+/* ---------------------------------------- Footer ---------------------------------------- */
+
+/* ---------------------------------------- Heroes ---------------------------------------- */
+
+/* ---------------------------------------- Lists ---------------------------------------- */
+
+/* ---------------------------------------- Links/Buttons ---------------------------------------- */
+
+/* standard button */
+
+.button {
+	border: 1px solid #CCC;
+	display: inline-block;
+	padding: 5px 7px;
+	text-align: center;
+}
+
+.button:hover,
+.button:focus {
+	background: #7B7B7B;
+}
+
+/* ---------------------------------------- Modules ---------------------------------------- */
+
+/* ---------------------------------------- Videos ---------------------------------------- */
+
+/*  Include if Brightcove or JS based video players are used */
+
+/* OOCSS and utilities */
+
+/* ---------------------------------------- OOCSS ---------------------------------------- */
+
+/*  Reusable classes to be applied as modifiers to existing DOM elements
+	to reduce the amount of repetition in style declarations */
+
+/* --------------------------- Text size */
+
+.primary {
+	font-size: 1.313em; /* 21px */
+	line-height: 1.238; /* 26px */
+}
+
+/* --------------------------- Color */
+
+.highlight {
+	color: #3565ad;
+}
+
+.light {
+	color: #eeeae1;
+}
+
+.reverse {
+	color: #fff;
+}
+
+/* --------------------------- Background */
+
+.bg_light {
+	background-color: #eeeae1;
+}
+
+.bg_reverse {
+	background-color: #fff;
+}
+
+/* --------------------------- Borders */
+
+.shadow {
+	-webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------- Transitions */
+
+/*  Use as OOCSS class or add any additional selectors to each declaration */
+
+.trans_all {
+	-webkit-transition: all 150ms ease-out 0s;
+	-moz-transition: all 150ms ease-out 0s;
+	-o-transition: all 150ms ease-out 0s;
+	transition: all 150ms ease-out 0s;
+}
+
+.trans_bg {
+	-webkit-transition: background-color 150ms ease-out 0s;
+	-moz-transition: background-color 150ms ease-out 0s;
+	-o-transition: background-color 150ms ease-out 0s;
+	transition: background-color 150ms ease-out 0s;
+}
+
+.trans_color {
+	-webkit-transition: color 150ms ease-out 0s;
+	-moz-transition: color 150ms ease-out 0s;
+	-o-transition: color 150ms ease-out 0s;
+	transition: color 150ms ease-out 0s;
+}
+
+.trans_opacity {
+	-webkit-transition: opacity 150ms ease-out 0s;
+	-moz-transition: opacity 150ms ease-out 0s;
+	-o-transition: opacity 150ms ease-out 0s;
+	transition: opacity 150ms ease-out 0s;
+}
+
+/* ---------------------------------------- Utility ---------------------------------------- */
+
+/*  Used similary to OOCSS the utility classes allow common code
+	to the utilised throughout the site without duplicating CSS. */
+
+/* --------------------------- Margin */
+
+.margin_0 {
+	margin: 0 !important;
+}
+
+.margin_t_0 {
+	margin-top: 0 !important;
+}
+
+.margin_r_0 {
+	margin-right: 0 !important;
+}
+
+.margin_b_0 {
+	margin-bottom: 0 !important;
+}
+
+.margin_l_0 {
+	margin-left: 0 !important;
+}
+
+/* --------------------------- Padding */
+
+.padding_0 {
+	padding: 0 !important;
+}
+
+.padding_t_0 {
+	padding-top: 0 !important;
+}
+
+.padding_r_0 {
+	padding-right: 0 !important;
+}
+
+.padding_b_0 {
+	padding-bottom: 0 !important;
+}
+
+.padding_l_0 {
+	padding-left: 0 !important;
+}
+
+/* --------------------------- Border */
+
+.border_0 {
+	border: 0 !important;
+}
+
+.border_t_0 {
+	border-top: 0 !important;
+}
+
+.border_r_0 {
+	border-right: 0 !important;
+}
+
+.border_b_0 {
+	border-bottom: 0 !important;
+}
+
+.border_l_0 {
+	border-left: 0 !important;
+}
+
+/* --------------------------- Floats */
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+/* --------------------------- Text alignment */
+
+.text_l {
+	text-align: left;
+}
+
+.text_r {
+	text-align: right;
+}
+
+.text_c {
+	text-align: center;
+}
+
+/* --------------------------- Text case */
+
+.upper {
+	text-transform: uppercase;
+}
+
+.lower {
+	text-transform: lowercase;
+}
+
+/* --------------------------- Typography */
+
+.strong {
+	font-weight: bold;
+}
+
+.normal {
+	font-weight: normal;
+}
+
+.italic {
+	font-style: italic;
+}
+
+/* --------------------------- Display properties */
+
+.block {
+	display: block;
+}
+
+.overflow_a {
+	overflow: auto !important;
+}
+
+.overflow_h {
+	overflow: hidden !important;
+}
+
+/* --------------------------- Clear */
+
+.clearer {
+	clear: both;
+	font-size: 0;
+	height: 0;
+	line-height: 0;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+.spacer {
+	clear: both;
+	font-size: 0;
+	height: 20px;
+	line-height: 0;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+/* --------------------------- Misc */
+
+/* Hide only visually, but have it available for screenreaders */
+
+.hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+/* Hide from both screenreaders and browsers */
+
+.no_display {
+	display: none !important;
+	visibility: hidden;
+}
+
+/* print stylesheet */
+
+/* ---------------------------------------- Print ---------------------------------------- */
+
+@media screen and (min-width: 58.875em) {
+
+.wrapper { /*  .wrapper max-width is 40px more than site width to account for left/right gutters */
+	max-width: 68.75em; /* 1100px */
+}
+
+/* --------------------------- Rows */
+
+.row {
+	margin-left: -1.25em; /* -20px */
+}
+
+.row:before,
+.row:after {
+	display: table;
+	content: '';
+	line-height: 0;
+}
+
+.row:after {
+	clear: both;
+}
+
+/* ie */
+
+.lt_ie9 .row {
+	zoom: 1;
+}
+
+/* --------------------------- Columns */
+
+[class*="lap_"],
+[class*="desk_"] {
+	float: left;
+	min-height: 1px;
+	padding-left: 1.25em; /* 20px */
+}
+
+.lap_1_12 {
+	width: 8.333333333333332%;
+}
+
+.lap_1_6 {
+	width: 16.666666666666664%;
+}
+
+.lap_1_4 {
+	width: 25%;
+}
+
+.lap_1_3 {
+	width: 33.33333333333333%;
+}
+
+.lap_5_12 {
+	width: 41.66666666666667%;
+}
+
+.lap_1_2 {
+	width: 50%;
+}
+
+.lap_7_12 {
+	width: 58.333333333333336%;
+}
+
+.lap_2_3 {
+	width: 66.66666666666666%;
+}
+
+.lap_3_4 {
+	width: 75%;
+}
+
+.lap_5_6 {
+	width: 83.33333333333334%;
+}
+
+.lap_11_12 {
+	width: 91.66666666666666%;
+}
+
+.lap_full {
+	width: 100%;
+}
+
+/* --------------------------- Offsets */
+
+.push_lap_1_12 {
+	margin-left: 8.333333333333332%;
+}
+
+.push_lap_1_6 {
+	margin-left: 16.666666666666664%;
+}
+
+.push_lap_1_4 {
+	margin-left: 25%;
+}
+
+.push_lap_1_3 {
+	margin-left: 33.33333333333333%;
+}
+
+.push_lap_5_12 {
+	margin-left: 41.66666666666667%;
+}
+
+.push_lap_1_2 {
+	margin-left: 50%;
+}
+
+.push_lap_7_12 {
+	margin-left: 58.333333333333336%;
+}
+
+.push_lap_2_3 {
+	margin-left: 66.66666666666666%;
+}
+
+.push_lap_3_4 {
+	margin-left: 75%;
+}
+
+.push_lap_5_6 {
+	margin-left: 83.33333333333334%;
+}
+
+.push_lap_11_12 {
+	margin-left: 91.66666666666666%;
+}
+
+.nav_primary {
+	float: right;
+}
+
+.nav_primary > li {
+	width: auto;
+}
+
+.nav_primary > li:after {
+	content: '/';
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.nav_primary > li:last-child:after {
+	content: '';
+}
+
+.header {
+	height: 3.75em; /* 60px */
+	position: fixed;
+	text-align: left;
+	z-index: 1;
+}
+
+.logo {
+	float: left;
+}
+
+}
+
+@media screen and (min-width: 63.75em) {
+
+/* --------------------------- Columns */
+
+.desk_1_12 {
+	width: 8.333334%;
+}
+
+.desk_1_8 {
+	width: 12.5%;
+}
+
+.desk_1_6 {
+	width: 16.666667%;
+}
+
+.desk_1_5 {
+	width: 20%;
+}
+
+.desk_1_4 {
+	width: 25%;
+}
+
+.desk_1_3 {
+	width: 33.333334%;
+}
+
+.desk_4_10 {
+	width: 40%;
+}
+
+.desk_5_12 {
+	width: 41.666667%;
+}
+
+.desk_1_2 {
+	width: 50%;
+}
+
+.desk_7_12 {
+	width: 58.333334%;
+}
+
+.desk_6_10 {
+	width: 60%;
+}
+
+.desk_2_3 {
+	width: 66.666667%;
+}
+
+.desk_3_4 {
+	width: 75%;
+}
+
+.desk_4_5 {
+	width: 80%;
+}
+
+.desk_5_6 {
+	width: 83.333334%;
+}
+
+.desk_7_8 {
+	width: 87.5%;
+}
+
+.desk_11_12 {
+	width: 91.666667%;
+}
+
+.desk_full {
+	width: 100%;
+}
+
+/* --------------------------- Offsets */
+
+.push_desk_1_12 {
+	margin-left: 8.333333333333332%;
+}
+
+.push_desk_1_6 {
+	margin-left: 16.666666666666664%;
+}
+
+.push_desk_1_4 {
+	margin-left: 25%;
+}
+
+.push_desk_1_3 {
+	margin-left: 33.33333333333333%;
+}
+
+.push_desk_5_12 {
+	margin-left: 41.66666666666667%;
+}
+
+.push_desk_1_2 {
+	margin-left: 50%;
+}
+
+.push_desk_7_12 {
+	margin-left: 58.333333333333336%;
+}
+
+.push_desk_2_3 {
+	margin-left: 66.66666666666666%;
+}
+
+.push_desk_3_4 {
+	margin-left: 75%;
+}
+
+.push_desk_5_6 {
+	margin-left: 83.33333333333334%;
+}
+
+.push_desk_11_12 {
+	margin-left: 91.66666666666666%;
+}
+
+}
+
+@media print {
+
+* {
+	border: 0 !important;
+	color: #000 !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+	-webkit-text-shadow: none !important;
+	text-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+html,
+body {
+	background: #fff !important;
+}
+
+p,
+li {
+	page-break-inside: avoid;
+}
+
+.wrapper {
+	max-width: 100%;
+	min-width: 100%;
+}
+
+}
+

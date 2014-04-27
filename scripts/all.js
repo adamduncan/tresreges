@@ -1,10 +1,48 @@
+/* TresReges / Adam Duncan on behalf of SAS / 2014-04-27 */
+(function ($) {
 
-/*
-	JS Document for Tres Reges
-	Build: Adam Duncan
-	Date: April 2014
-*/
+	var $event = $.event,
+		$special,
+		resizeTimeout;
 
+	$special = $event.special.debouncedresize = {
+		setup: function () {
+			$(this).on("resize", $special.handler);
+		},
+		teardown: function () {
+			$(this).off("resize", $special.handler);
+		},
+		handler: function (event, execAsap) {
+			// Save the context
+			var context = this,
+				args = arguments,
+				dispatch = function () {
+					// set correct event type
+					event.type = "debouncedresize";
+					$event.dispatch.apply(context, args);
+				};
+
+			if (resizeTimeout) {
+				clearTimeout(resizeTimeout);
+			}
+
+			execAsap ?
+				dispatch() :
+				resizeTimeout = setTimeout(dispatch, $special.threshold);
+		},
+		threshold: 50
+	};
+
+})(jQuery);
+jQuery.extend(jQuery.easing, {
+	easeInOutQuad: function (x, t, b, c, d) {
+		if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+		return -c / 2 * ((--t) * (t - 2) - 1) + b;
+	},
+	easeOutQuad: function (x, t, b, c, d) {
+		return -c * (t /= d) * (t - 2) + b;
+	}
+});
 var AppSettings = {
 	DEBUGMODE: true, //change to turn on/off console.log statements
 	scrollPos: 0,

@@ -8,8 +8,7 @@
 	width: 100%;
 	@include mq($lap) {
 		/*  .wrapper max-width is 40px more than site width to account for left/right gutters */
-		max-width: 91.25em; /* 1460px */
-		padding: 0 1.25em; /* 0 20px */
+		max-width: 68.75em; /* 1100px */
 	}
 }
 

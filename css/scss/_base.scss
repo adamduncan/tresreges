@@ -12,8 +12,8 @@ html {
 	overflow-y: scroll;
 }
 body {
-	color: #1F1F1F;
-	font-family: Helvetica, Arial, sans-serif;
+	color: #000;
+	font-family: $baseFont, Helvetica, Arial, sans-serif;
 	font-size: 100%; /* 16px */
 	line-height: 1.250; /* 20px */
 	height: 100%;
@@ -42,8 +42,12 @@ h1, .h1 {
 	line-height: 1; /* 32px */
 }
 h2, .h2 {
-	font-size: 1.5em; /* 24px */
-	line-height: 1; /* 24px */
+	font-family: $sansFont;
+	font-size: 5em; /* 80px */
+	letter-spacing: 0.075em; /* 6px */
+	line-height: 1; /* 80px */
+	text-align: center;
+	text-transform: uppercase;
 }
 h3, .h3 {
 	font-size: 1.125em; /* 18px */
@@ -65,12 +69,12 @@ p, .p {
 /* --------------------------- Links */
 a {
 	color: #0082c8;
+	text-decoration: none;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	@include transition(color, 150ms, ease-out, 0s);
 }
 a:hover,
 a:focus {
-	text-decoration: underline;
 }
 
 
@@ -175,11 +179,18 @@ hr, .hr {
 /*  Main parent wrappers to contain all site elements,
 	and define sticky footer styles if required */
 
-.main_content {
-	overflow: hidden;
-	position: relative;
+.section {
+	background-position: center 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-top: 3.75em; /* 60px */
+	width: 100%;
 }
-
+.section .wrapper {
+	position: relative;
+	top: 50%;
+	@include translate(0, -50%);
+}
 
 /* ---------------------------------------- Navigation ---------------------------------------- */
 
@@ -190,92 +201,90 @@ hr, .hr {
 
 /* ---------------------------- Primary nav */
 .nav_primary {
-	margin: 0 0 20px;
+	font-size: 1.125em; /* 18px */
+	font-style: italic;
+	line-height: 1.333em; /* 24px */
+	margin-top: 0.778em; /* 14px */
+	@include mq($lap) {
+		float: right;
+	}
 }
 .nav_primary > li {
 	float: left;
+	padding: 0 1.333em; /* 0 24px */
+	position: relative;
+	text-align: center;
+	width: 50%;
+	@include mq($lap) {
+		width: auto;
+	}
+}
+.nav_primary > li:last-child {
+	margin: 0;
+}
+@include mq($lap) {
+	.nav_primary > li:after {
+		content: '/';
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	.nav_primary > li:last-child:after {
+		content: '';
+	}
 }
 .nav_primary > li a {
+	color: #000;
 	display: block;
 }
-.nav_primary .current > a {
-	color: red;
+.nav_primary a:hover,
+.nav_primary a:focus,
+.nav_primary .current {
+	color: $highlight;
 }
-
-
-/* --------------------------- Secondary nav */
-.nav_secondary {
-	margin: 0 0 20px;
-}
-.nav_secondary > li {
-	float: left;
-}
-.nav_secondary > li a {
-	display: block;
-}
-.nav_secondary .current > a {
-	color: red;
-}
-
-/* ---------- second level */
-.nav_secondary > li > ul {
-	border-top: 1px solid #d0d2d3;
-}
-
-/* ---------- second level and following */
-.nav_secondary > li ul {
-	padding: 4px 0;
-}
-.nav_secondary > li ul > li {
-	padding: 0 0 0 15px;
-}
-
-
-/* --------------------------- Support nav */
-.nav_support {
-}
-.nav_support li {
-}
-.nav_support .current {
-}
-
 
 
 /* ---------------------------------------- Header ---------------------------------------- */
 
 .header {
-	position: relative;
-	margin: 0 0 10px;
+	background-color: rgba(255,255,255,0.8);
+	overflow: hidden;
+	padding: 0.75em 0; /* 12px 0 */
+	text-align: center;
+	width: 100%;
+	@include mq($lap) {
+		height: 3.75em; /* 60px */
+		position: fixed;
+		text-align: left;
+		z-index: 1;
+	}
 }
 
 /* --------------------------- Logo */
 .logo {
+	display: block;
+	font-family: $sansFont;
+	font-size: 2.375em; /* 38px */
+	letter-spacing: 0.105em; /* 4px */
+	line-height: 1;
+	margin: 0 auto;
+	padding-left: 2em; /* 76px */
+	text-transform: uppercase;
+	@include mq($lap) {
+		float: left;
+	}
 }
 
 
 
 /* ---------------------------------------- Footer ---------------------------------------- */
 
-.footer {
-}
-.push {
-}
-
-
 
 /* ---------------------------------------- Heroes ---------------------------------------- */
-
-.hero {
-}
 
 
 
 /* ---------------------------------------- Lists ---------------------------------------- */
-
-.list_links {
-}
-.list_bordered {
-}
 
 
 
@@ -296,70 +305,6 @@ hr, .hr {
 
 
 /* ---------------------------------------- Modules ---------------------------------------- */
-
-.module {
-	position: relative;
-}
-
-
-
-/* ---------------------------------------- Media block ---------------------------------------- */
-
-.media,
-.media .media_bd {
-	overflow: hidden;
-	zoom: 1;
-}
-.media .media_l {
-	float: left;
-	margin: 0 20px 20px 0;
-}
-.media .media_r {
-	float: right;
-	margin: 0 0 20px 20px;
-}
-
-
-
-/* ---------------------------------------- Forms ---------------------------------------- */
-
-form {
-	position: relative;
-	zoom: 1;
-}
-
-/* hover/focus - for accessbility, include new style to overwrite default */
-input:focus,
-select:focus,
-textarea:focus {
-	outline: 0;
-}
-
-input,
-textarea {
-	border: 1px solid #E8E8E8;
-	font-size: 0.875em; /* 14px */
-	margin: 0 0 15px;
-	padding: 8px;
-	width: 100%;
-}
-
-
-
-/* ---------------------------------------- Table ---------------------------------------- */
-
-table {
-	width: 100%;
-	font-size: 0.75em; /* 12px */
-	line-height: 1.5; /* 18px */
-	margin-bottom: 15px;
-}
-table td {
-	padding: 7px 10px 6px 0;
-	border-bottom: 1px solid #eeeae1;
-}
-
-
 
 /* ---------------------------------------- Videos ---------------------------------------- */
 

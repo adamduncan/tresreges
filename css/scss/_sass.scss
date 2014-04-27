@@ -5,14 +5,14 @@ $docFontSize: 16;
 $docLineHeight: 1.25; /* 20px */
 
 /* Font stacks */
-$baseFont: Arial, Helvetica, sans-serif;
-$sansFont: Verdana, Arial, Helvetica, sans-serif;
-$serifFont: Georgia, Times, serif;
+$baseFont: 'Rosario', Arial, Helvetica, sans-serif;
+$sansFont: 'Bebas Neue', Arial, Helvetica, sans-serif;
 
 /* Breakpoints (in px) */
-$lap: 725;
+$lap: 942;
 $desk: 1020;
 
+$highlight: #3565ad;
 
 /* ---------------------------------------- Mixins ---------------------------------------- */
 @mixin border-radius($radius) {
@@ -37,6 +37,18 @@ $desk: 1020;
 	   -moz-transition: $property $duration $easing $delay;
 	     -o-transition: $property $duration $easing $delay;
 			transition: $property $duration $easing $delay;
+}
+
+
+@mixin translate($x, $y) {
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transform: translate($x, $y);
+	-moz-transform: translate($x, $y);
+	-ms-transform: translate($x, $y);
+	-o-transform: translate($x, $y);
+	transform: translate($x, $y);
 }
 
 /*
