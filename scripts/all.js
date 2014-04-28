@@ -1,4 +1,4 @@
-/* TresReges / Adam Duncan on behalf of SAS / 2014-04-28 */
+/* TresReges / Adam Duncan / 2014-04-28 */
 (function ($) {
 
 	var $event = $.event,
