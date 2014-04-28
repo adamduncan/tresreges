@@ -169,7 +169,7 @@ var Utils = {
 	},
 
 	scrollEvents: function() {
-		Utils.getScrollPos();
+		Utils.setScrollPos();
 		Menu.highlightCurrent();
 	},
 
@@ -177,7 +177,7 @@ var Utils = {
 		Utils.viewportHeight = $(window).height();
 	},
 
-	getScrollPos: function() {
+	setScrollPos: function() {
 		Utils.scrollPos = $(window).scrollTop();
 	},
 
