@@ -239,7 +239,8 @@ ul li {
 }
 
 .nav_primary a:hover,
-.nav_primary a:focus {
+.nav_primary a:focus,
+.nav_primary .current {
   color: #3565ad;
 }
 

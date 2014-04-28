@@ -121,7 +121,9 @@ var Utils = {
 
 	resizeEvents: function() {
 		Utils.setViewportHeight();
+		Layout.init();
 		Menu.storeSectionArray();
+		Menu.highlightCurrent();
 	},
 
 	bindScrollEvent: function() {

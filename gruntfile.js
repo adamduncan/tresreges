@@ -3,7 +3,7 @@
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		banner: '/* <%= pkg.name %> / <%= pkg.author %> on behalf of SAS / <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+		banner: '/* <%= pkg.name %> / <%= pkg.author %> / <%= grunt.template.today("yyyy-mm-dd") %> */\n',
 		jshint: {
 			all: ['Gruntfile.js', 'scripts/common.js'],
 			options: {
@@ -36,7 +36,7 @@
 				}
 			},
 			options: {
-				ignore: [/^.svg/, /^.no-svg/, /^.js/, /^.no-js/, '::-moz-selection', '::selection'],
+				ignore: [/^.svg/, /^.no-svg/, /^.js/, /^.no-js/, /.current$/, '::-moz-selection', '::selection'],
 				ignoreSheets: [/fonts.googleapis/]
 			}
 		},
