@@ -1,4 +1,4 @@
-/* TresReges / Adam Duncan / 2014-04-28 */
+/* TresReges / Adam Duncan / 2014-04-29 */
 (function ($) {
 
 	var $event = $.event,
@@ -146,6 +146,54 @@ var Menu = {
 
 };
 
+var Video = {
+
+    selector: '[data-video]',
+    anchorSelector: '[data-video-anchor]',
+    videoIdAttr: 'data-video-id',
+    frameSelector: '[data-video-frame]',
+    frameUrl: '//player.vimeo.com/video/',
+    frameQuery: '?title=0&amp;byline=0&amp;portrait=0&amp;color=bababa&amp;autoplay=1&amp;api=1',
+
+    init: function () {
+        Video.bindClickEvent();
+    },
+
+    bindClickEvent: function () {
+        $(Video.anchorSelector).on('click', function (e) {
+            var $this = $(this).parent();
+
+            Video.loadVideo($this);
+            e.preventDefault();
+        });
+    },
+
+    loadVideo: function ($this) {
+        var videoId = $this.attr(Video.videoIdAttr),
+			videoHeight = $(Video.anchorSelector, $this).find('img').height();
+        $(Video.frameSelector, $this).stop().animate({ 'opacity': 0 }, 0).show().find('iframe').attr({ 'src': Video.frameUrl + videoId + Video.frameQuery, 'height': videoHeight });
+        Video.showVideo($this);
+    },
+
+    showVideo: function ($this) {
+        $(Video.anchorSelector, $this).stop().animate({ 'opacity': 0 }, 200, function () {
+            $(Video.frameSelector, $this).show().stop().animate({ 'opacity': 1 }, 200);
+        });
+    },
+
+    pauseVideo: function () {
+        var videoObject = $('.js_video_frame', '.js_showreel')[0],
+            videoSrc = $(videoObject).attr('src');
+
+        if (videoSrc !== '') {
+            // frogaloop
+            // http://css-tricks.com/play-button-youtube-and-vimeo-api/
+            $f(videoObject).api('pause');
+        }
+
+    }
+};
+
 var Utils = {
 
 	viewportHeight: 0,
@@ -199,6 +247,7 @@ var Main = {
 		Utils.setViewportHeight();
 		Layout.init();
 		Menu.bindClickEvent();
+		Video.init();
 	}
 
 };

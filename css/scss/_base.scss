@@ -36,18 +36,17 @@ h4, .h4 {
 	text-rendering: optimizeLegibility;
 }
 
-h1, .h1 {
-	font-size: 2em; /* 32px */
-	font-weight: bold;
-	line-height: 1; /* 32px */
-}
 h2, .h2 {
 	font-family: $sansFont;
-	font-size: 5em; /* 80px */
-	letter-spacing: 0.075em; /* 6px */
-	line-height: 1; /* 80px */
+	font-size: 3.125em; /* 50px */
+	letter-spacing: 0.08em; /* 4px */
+	line-height: 1; /* 50px */
+	margin-bottom: 0.7em; /* 35px */
 	text-align: center;
 	text-transform: uppercase;
+	@include mq($lap) {
+		font-size: 5em; /* 80px */			
+	}
 }
 h3, .h3 {
 	font-size: 1.125em; /* 18px */
@@ -133,6 +132,10 @@ ul li ol li {
 }
 .list_inline li {
 	float: left;
+	margin-right: 0.5em;
+}
+.list_inline li:last-child {
+	margin-right: 0;
 }
 
 
@@ -192,6 +195,34 @@ hr, .hr {
 	@include translate(0, -50%);
 }
 
+.intro_title {
+	font-size: 6.250em; /* 100px */
+	letter-spacing: 0.093em; /* 9px from 100 */
+	line-height: 1;
+	padding-top: 1em; /* 100px from 100 */
+	position: relative;
+	text-shadow: 0 -0.3em 1.5em rgba(0, 0, 0, 0.7);
+	@include mq($lap) {
+		font-size: 9.375em; /* 150px */
+		padding-top: 0.6em; /* 90px from 150 */
+	}
+}
+
+.intro_title:before {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22160%22%20height%3D%2280%22%20viewBox%3D%220%200%20160%2080%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M2.487%201.356l77.732%2077.638h-63.142l-14.59-77.638zm77.685.365l62.777%2077.272h-52.311l-5.262-5.334-35.119-35.115%2029.915-36.823zm50.526%2071.442l-31.577-38.863-10.928%2013.612-12.015-14.965-4.217%205.25-6.91-8.616-6.951%208.557%2031.404%2031.402.014.015.012.015%203.553%203.593h37.615zm-10.934-34.49l24.834%2030.6%2012.89-68.279-37.724%2037.679z%22/%3E%3C/svg%3E');
+	background-position: center 0;
+	background-repeat: no-repeat;
+	content: '';
+	display: block;
+	height: 0.8em; /* 80px from 100 */
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+.no-svg .intro_title:before {
+	background-image: url(/images/png/tres-reges-logo-intro.png);
+}
+
 /* ---------------------------------------- Navigation ---------------------------------------- */
 
 /*  All navigation elemets are listed here. This includes
@@ -244,9 +275,26 @@ hr, .hr {
 }
 
 
+/* ---------------------------- Sidebar nav */
+.sidebar {
+	display: none;
+	@include mq($lap) {
+		background-color: #fff;
+		background-color: rgba(255,255,255,0.8);
+		display: block;
+		padding: 10px;
+		position: fixed;
+		right: 0;
+		top: 20%;
+		width: 2.813em; /* 45px */
+		z-index: 1;
+	}
+}
+
 /* ---------------------------------------- Header ---------------------------------------- */
 
 .header {
+	background-color: #fff;
 	background-color: rgba(255,255,255,0.8);
 	overflow: hidden;
 	padding: 0.75em 0; /* 12px 0 */
@@ -262,17 +310,24 @@ hr, .hr {
 
 /* --------------------------- Logo */
 .logo {
-	display: block;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2263%22%20height%3D%2232%22%20viewBox%3D%220%200%2063%2032%22%3E%3Cpath%20d%3D%22M.487.143l31.093%2031.851h-25.257l-5.836-31.851zm31.074.149l25.111%2031.702h-20.924l-2.105-2.188-14.048-14.407%2011.966-15.107zm20.21%2029.31l-12.63-15.944-4.371%205.584-4.806-6.14-1.687%202.154-2.764-3.534-2.78%203.51%2012.562%2012.883.005.006.005.006%201.421%201.474h15.045zm-4.373-14.15l9.934%2012.555%205.156-28.013-15.09%2015.458z%22/%3E%3C/svg%3E');
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	display: inline-block;
 	font-family: $sansFont;
 	font-size: 2.375em; /* 38px */
-	letter-spacing: 0.105em; /* 4px */
-	line-height: 1;
+	letter-spacing: 0.105em; /* 4px from 38px */
+	line-height: 0.843em; /* 32px */
 	margin: 0 auto;
-	padding-left: 2em; /* 76px */
+	padding: 0.079em 0 0 2em; /* 3px 0 0 76px from 38px */
 	text-transform: uppercase;
 	@include mq($lap) {
+		display: block;
 		float: left;
 	}
+}
+.no-svg .logo {
+	background-image: url(/images/png/tres-reges-logo-small.png);
 }
 
 
@@ -286,27 +341,97 @@ hr, .hr {
 
 /* ---------------------------------------- Lists ---------------------------------------- */
 
+/* --------------------------- List icons */
+.list_icons {
+	oveflow: hidden;
+}
+.list_icons li {
+	float: left;
+	margin-bottom: 0.417em; /* 10px from 24 */
+	font-size: 1.5em; /* 24px */
+}
+.list_icons li:last-child {
+	margin-bottom: 0;
+}
+[class*="icon_"] {
+	background-position: 0 0;
+	background-repeat: no-repeat; 
+	background-size: contain;
+	display: block;
+	height: 1em; /* inherit */
+	overflow: hidden;
+	text-indent: 200%;
+	width: 1em; /* inherit */
+}
+.icon_email {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23000100%22%20d%3D%22M21%200h-18c-1.649%200-3%201.35-3%203v18c0%201.649%201.351%203%203%203h18c1.65%200%203-1.351%203-3v-18c0-1.65-1.35-3-3-3zm-1.027%206.469l-7.972%206.748-7.888-6.748h15.86zm.12%2011.061h-16.186v-9.115l8.092%206.92%208.094-6.853v9.048z%22/%3E%3C/svg%3E');
+}
+.no-svg .icon_email {
+	background-image: url(/images/png/icon-email.png);
+}
 
+.icon_facebook {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M21%200h-18c-1.65%200-3%201.351-3%203v18c0%201.649%201.35%203%203%203h9.104v-8.605h-2.875v-3.749h2.874v-1.878c0-2.896%202.138-5.163%204.867-5.163h2.648v4.233h-2.368c-.621%200-.803.356-.803.849v1.959h3.172v3.749h-3.172v8.605h4.553c1.65%200%203-1.351%203-3v-18c0-1.649-1.35-3-3-3%22/%3E%3C/svg%3E');
+}
+.no-svg .icon_facebook {
+	background-image: url(/images/png/icon-facebook.png);
+}
 
-/* ---------------------------------------- Links/Buttons ---------------------------------------- */
+.icon_instagram {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M19.256%2012c0%204.008-3.249%207.256-7.256%207.256-4.008%200-7.256-3.248-7.256-7.256%200-.478.047-.944.135-1.396h-4.879v9.646c0%202.071%201.678%203.75%203.75%203.75h16.5c2.07%200%203.75-1.679%203.75-3.75v-9.646h-4.88c.088.452.136.918.136%201.396m.994-12h-16.5c-2.072%200-3.75%201.679-3.75%203.75v4.063h6.075c1.314-1.856%203.477-3.069%205.925-3.069%202.447%200%204.61%201.213%205.924%203.07h6.076v-4.064c0-2.071-1.68-3.75-3.75-3.75m1.833%204.632c0%20.369-.301.67-.669.67h-2.01c-.368%200-.67-.301-.67-.67v-2.008c0-.369.302-.67.67-.67h2.01c.368%200%20.669.301.669.67v2.008zm-5.618%207.368c0-2.466-1.999-4.465-4.465-4.465-2.466%200-4.465%201.999-4.465%204.465%200%202.466%201.999%204.465%204.465%204.465%202.466%200%204.465-1.999%204.465-4.465%22/%3E%3C/svg%3E');
+}
+.no-svg .icon_instagram {
+	background-image: url(/images/png/icon-instagram.png);
+}
 
-/* standard button */
-.button {
-	border: 1px solid #CCC;
-	display: inline-block;
-	padding: 5px 7px;
+.icon_youtube {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M13.702%2015.509c-.13%200-.259.034-.386.106s-.248.176-.361.314v-1.97h-.847v6.117h.847v-.346c.111.138.229.239.358.306.13.065.274.099.438.099.249%200%20.439-.085.57-.256.133-.17.198-.416.198-.736v-2.504c0-.369-.07-.648-.211-.843-.138-.191-.341-.287-.606-.287zm-.045%203.511c0%20.144-.025.247-.074.31-.048.065-.123.097-.227.097l-.201-.05c-.065-.031-.131-.085-.2-.158v-2.813l.174-.138.177-.043c.114%200%20.2.039.261.118.059.079.091.194.091.347v2.33zM10.451%2018.99c-.079.099-.166.179-.26.242s-.172.095-.233.095c-.078%200-.136-.023-.171-.072-.035-.046-.053-.124-.053-.23v-3.46h-.838v3.771c0%20.27.049.47.147.604.099.136.245.204.439.204.156%200%20.319-.049.487-.145.167-.097.328-.237.482-.42v.498h.839v-4.513h-.839v3.426zM8.906%2013.96h-2.899v.889h.977v5.228h.944v-5.228h.978zM11.086%2010.082c.026.029.182.068.296.068.128%200%20.347-.043.377-.074.053-.055.241-.135.241-.243v-3.364c0-.075-.183-.125-.23-.168-.051-.045-.206-.066-.305-.066-.115%200-.312.036-.335.057-.047.047-.214.101-.214.177v3.364c0%20.118.128.2.17.249zM21%200h-18c-1.65%200-3%201.35-3%203v18c0%201.649%201.35%203%203%203h18c1.65%200%203-1.351%203-3v-18c0-1.65-1.35-3-3-3zm-6.833%2010.267v-5.309h1.083v4.881c0%20.146.104.188.165.199.011%200%20.299-.004.43-.095.09-.059.488-.136.488-.229v-4.756h1.084v6.5h-1.084v-.333c0%20.093-.412.172-.526.238-.263.149-.618.225-.869.225-.334%200-.478-.126-.652-.364-.164-.226-.119-.538-.119-.957zm-2.696-5.539c.534%200%20.849.173%201.191.512.345.339.422.779.422%201.309v3.193c0%20.585-.073%201.055-.411%201.396-.34.343-.756.516-1.335.516-.562%200-.835-.18-1.176-.532-.341-.35-.329-.821-.329-1.404v-3.203c0-.54.019-.979.373-1.304.349-.32.689-.483%201.265-.483zm-4.552-1.937l.708%202.821.673-2.821h1.78l-1.33%205.015v3.652h-1.98l.01-3.4-1.626-5.267h1.765zm12.665%2015.167c0%201.795-1.456%203.251-3.251%203.251h-8.666c-1.795%200-3.25-1.456-3.25-3.251v-2.167c0-1.793%201.456-3.25%203.25-3.25h8.667c1.795%200%203.251%201.457%203.251%203.25v2.167zM16.427%2015.449c-.375%200-.682.125-.919.372-.236.246-.354.564-.354.956v2.026c0%20.435.107.775.323%201.023s.512.372.887.372c.418%200%20.732-.116.941-.351.212-.234.316-.582.316-1.045v-.34h-.864v.313c0%20.267-.027.438-.082.515-.056.078-.153.117-.293.117-.133%200-.226-.046-.283-.138-.055-.092-.082-.257-.082-.494v-.851h1.604v-1.149c0-.427-.103-.757-.31-.983-.205-.228-.501-.343-.884-.343zm.33%201.778h-.74v-.457c0-.189.028-.324.087-.405.058-.081.154-.124.287-.124.129%200%20.221.043.279.124.058.081.087.216.087.405v.457z%22/%3E%3C/svg%3E');
+}
+.no-svg .icon_youtube {
+	background-image: url(/images/png/icon-youtube.png);
+}
+
+.list_icons.large {
+	font-size: 3.75em; /* 60px */
+}
+
+/* --------------------------- List centered */
+.list_centred {
 	text-align: center;
 }
-.button:hover,
-.button:focus {
-	background: #7B7B7B;
+.list_centred li {
+	display: inline;
+	float: none;
+	margin-right: 0;
+	padding: 0 0.25em;
+}
+.list_centred li a {
+	display: inline-block;
 }
 
-
+/* ---------------------------------------- Links/Buttons ---------------------------------------- */
 
 /* ---------------------------------------- Modules ---------------------------------------- */
 
 /* ---------------------------------------- Videos ---------------------------------------- */
-
-/*  Include if Brightcove or JS based video players are used */
-
+.video_container {
+	position: relative;
+	text-align: center;
+}
+.video_anchor {
+	background-color: #fff;
+	background-color: rgba(255,255,255,0.8);
+	display: inline-block;
+	margin: 0 auto;
+	padding: 0.313em; /* 5px */
+}
+.video_frame {
+	background-color: #fff;
+	background-color: rgba(255,255,255,0.8);
+	display: none;
+	left: 50%;
+	margin: 0 0 0 -22.5em; /* 0 0 0 -360px */
+	padding: 0.313em; /* 5px */
+	position: absolute;
+	top: 0;
+}

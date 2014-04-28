@@ -35,6 +35,9 @@
 }
 
 /* --------------------------- Borders */
+.border_std {
+	border: 0.313em solid rgba(255,255,255,0.8);
+}
 .shadow {
 	@include box-shadow(0, 0, 5px, 3px, rgba(0,0,0,0.1));
 }

@@ -4,6 +4,17 @@
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		banner: '/* <%= pkg.name %> / <%= pkg.author %> / <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+		svgmin: {
+			dist: {
+				files: [{
+					expand: true,
+					cwd: 'images/svg',
+					src: ['**/*.svg'],
+					dest: 'images/svgmin',
+					ext: '-min.svg'
+				}]
+			}
+		},
 		jshint: {
 			all: ['Gruntfile.js', 'scripts/common.js'],
 			options: {
@@ -99,6 +110,8 @@
 	});
 
 	// Load plugins
+	grunt.loadNpmTasks('grunt-svgmin');
+
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-combine-media-queries');
@@ -111,5 +124,6 @@
 	// Default task(s).
 	grunt.registerTask('default', ['sass', 'cmq', 'concat', 'jshint']);
 	grunt.registerTask('build', ['sass', 'cmq', 'uncss', 'cssmin', 'concat', 'jshint', 'uglify']);
+	grunt.registerTask('svg', ['svgmin']);
 
 };
