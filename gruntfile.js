@@ -70,6 +70,8 @@
 				src: [
 					'scripts/vendor/jquery.debouncedresize.js',
 					'scripts/vendor/jquery.easing.custom.js',
+					'scripts/vendor/jquery.stellar.js',
+					'scripts/vendor/idangerous.swiper.js',
 					'scripts/common.js'
 				],
 				dest: 'scripts/all.js'

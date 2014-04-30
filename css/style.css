@@ -39,10 +39,14 @@
 /* ---------------------------------------- Reset ---------------------------------------- */
 
 body,
+button,
 h1,
 h2,
+h3,
+h4,
 iframe,
 li,
+p,
 ul {
   border: 0;
   font-size: 100%;
@@ -52,7 +56,9 @@ ul {
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4 {
   font-weight: normal;
 }
 
@@ -65,6 +71,12 @@ img {
 
 iframe {
   vertical-align: top;
+}
+
+button {
+  color: inherit;
+  display: block;
+  font: inherit;
 }
 
 /* base styles */
@@ -113,7 +125,9 @@ body {
 /* --------------------------- Headings */
 
 h1,
-h2 {
+h2,
+h3,
+h4 {
   display: block;
   text-rendering: optimizeLegibility;
 }
@@ -132,7 +146,38 @@ h2 {
   text-transform: uppercase;
 }
 
+h3 {
+  font-size: 1.438em;
+  /* 23px */
+  font-weight: bold;
+  font-style: italic;
+  line-height: 1.174;
+  /* 27px */
+  margin-bottom: 0.348em;
+  /* 8px */
+}
+
+h4 {
+  font-size: 1.125em;
+  /* 18px */
+  font-weight: bold;
+  font-style: italic;
+  line-height: 1.333;
+  /* 24px */
+  margin-bottom: 0.444em;
+  /* 8px */
+}
+
 /* --------------------------- Paragraph */
+
+p {
+  font-size: 0.875em;
+  /* 14px */
+  line-height: 1.286;
+  /* 18px */
+  margin: 0 0 1.25em;
+  /* 0 0 20px */
+}
 
 /* --------------------------- Links */
 
@@ -151,8 +196,8 @@ a {
 ul {
   font-size: 0.875em;
   /* 14px */
-  line-height: 1.429;
-  /* 20px */
+  line-height: 1.286;
+  /* 18px */
   margin: 0 0 1.25em;
   /* 0 0 20px */
   zoom: 1;
@@ -212,11 +257,13 @@ ul li {
 	and define sticky footer styles if required */
 
 .section {
+  background-attachment: fixed;
   background-position: center 0;
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 3.75em;
   /* 60px */
+  position: relative;
   width: 100%;
 }
 
@@ -226,12 +273,14 @@ ul li {
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-transform: translate(0, -50%);
-  -moz-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  -o-transform: translate(0, -50%);
-  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -51%);
+  -moz-transform: translate(0, -51%);
+  -ms-transform: translate(0, -51%);
+  -o-transform: translate(0, -51%);
+  transform: translate(0, -51%);
 }
+
+/* ---------------------------- Intro section */
 
 .intro_title {
   font-size: 6.250em;
@@ -260,6 +309,13 @@ ul li {
 
 .no-svg .intro_title:before {
   background-image: url(/images/png/tres-reges-logo-intro.png);
+}
+
+.inner {
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 1em 0.625em 0.625em;
+  /* 16px 10px 10px */
 }
 
 /* ---------------------------------------- Navigation ---------------------------------------- */
@@ -348,7 +404,113 @@ ul li {
 
 /* ---------------------------------------- Footer ---------------------------------------- */
 
-/* ---------------------------------------- Heroes ---------------------------------------- */
+/* ---------------------------------------- Carousel ---------------------------------------- */
+
+.swiper-container {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Fix of Webkit flickering */
+  z-index: 1;
+}
+
+.swiper-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  -webkit-transition-property: -webkit-transform, left, top;
+  -webkit-transition-duration: 0s;
+  -webkit-transform: translate3d(0px, 0, 0);
+  -webkit-transition-timing-function: ease;
+  -moz-transition-property: -moz-transform, left, top;
+  -moz-transition-duration: 0s;
+  -moz-transform: translate3d(0px, 0, 0);
+  -moz-transition-timing-function: ease;
+  -o-transition-property: -o-transform, left, top;
+  -o-transition-duration: 0s;
+  -o-transform: translate3d(0px, 0, 0);
+  -o-transition-timing-function: ease;
+  -o-transform: translate(0px, 0px);
+  -ms-transition-property: -ms-transform, left, top;
+  -ms-transition-duration: 0s;
+  -ms-transform: translate3d(0px, 0, 0);
+  -ms-transition-timing-function: ease;
+  transition-property: transform, left, top;
+  transition-duration: 0s;
+  transform: translate3d(0px, 0, 0);
+  transition-timing-function: ease;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.swiper-slide {
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: e-resize;
+  float: left;
+}
+
+.carousel_btn {
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2280%22%20height%3D%2240%22%20viewBox%3D%220%200%2080%2040%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M60%200c-11.046%200-20%208.954-20%2020s8.954%2020%2020%2020%2020-8.954%2020-20-8.954-20-20-20zm7.928%2021.654l-11.314%2011.314c-.391.391-.902.586-1.414.586s-1.023-.195-1.414-.586c-.781-.78-.781-2.048%200-2.828l9.899-9.899-9.899-9.9c-.781-.781-.781-2.047%200-2.828.78-.781%202.047-.781%202.828%200l11.313%2011.313c.782.781.782%202.047.001%202.828zM0%2020c0%2011.046%208.954%2020%2020%2020s20-8.954%2020-20-8.954-20-20-20-20%208.954-20%2020zm12.072-1.174l11.314-11.314c.781-.781%202.048-.781%202.828%200%20.781.781.781%202.047%200%202.828l-9.899%209.9%209.899%209.899c.781.78.781%202.048%200%202.828-.391.391-.902.586-1.414.586s-1.023-.195-1.414-.586l-11.314-11.313c-.781-.781-.781-2.047%200-2.828z%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: block;
+  height: 2.5em;
+  /* 40px */
+  margin-top: -0.625em;
+  /* -10px */
+  opacity: 0.8;
+  outline: none;
+  overflow: hidden;
+  position: absolute;
+  text-indent: 200%;
+  top: 50%;
+  white-space: nowrap;
+  width: 2.5em;
+  /* 40px */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.no-svg .carousel_btn {
+  background-image: url(/images/png/icon-carousel-arrows.png);
+}
+
+.carousel_next {
+  background-position: center right;
+  right: 1.25em;
+  /* 20px */
+}
+
+.carousel_prev {
+  background-position: center left;
+  left: 1.25em;
+  /* 20px */
+}
+
+.carousel_btn:hover,
+.carousel_btn:focus {
+  opacity: 1;
+}
+
+.carousel_caption {
+  bottom: 0;
+  cursor: e-resize;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
 
 /* ---------------------------------------- Lists ---------------------------------------- */
 
@@ -500,7 +662,15 @@ ul li {
 
 /* --------------------------- Margin */
 
+.margin_b_0 {
+  margin-bottom: 0 !important;
+}
+
 /* --------------------------- Padding */
+
+.padding_0 {
+  padding: 0 !important;
+}
 
 /* --------------------------- Border */
 
@@ -601,12 +771,23 @@ ul li {
     /* 60px */
     position: fixed;
     text-align: left;
-    z-index: 1;
+    z-index: 2;
   }
 
   .logo {
     display: block;
     float: left;
+  }
+
+  .carousel_caption {
+    bottom: 3.125em;
+    /* 50px */
+    min-height: 10em;
+    /* 160px */
+    left: 6.25em;
+    /* 100px */
+    width: 26.875em;
+    /* 430px */
   }
 }
 
@@ -614,6 +795,12 @@ ul li {
   /* --------------------------- Columns */
 
   /* --------------------------- Offsets */
+}
+
+@media screen and (max-height: 43.75em) {
+  h2 {
+    margin-bottom: 0.35em;
+  }
 }
 
 @media print {
@@ -633,6 +820,7 @@ ul li {
     background: #fff !important;
   }
 
+  p,
   li {
     page-break-inside: avoid;
   }

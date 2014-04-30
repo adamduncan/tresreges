@@ -50,12 +50,14 @@ var Debug = {
 var Layout = {
 
 	sectionSelector: '[data-section]',
+	carouselSlideSelector: '[data-carousel-slide]',
 
 	init: function() {
 		$(Layout.sectionSelector).each(function() {
 			var $this = $(this);
 			$this.css('height', Utils.viewportHeight);
 		});
+		$(Layout.carouselSlideSelector).css('height', Utils.viewportHeight);
 	}
 
 };
@@ -108,6 +110,18 @@ var Menu = {
 
 };
 
+var Stellar = {
+
+	init: function() {
+		$.stellar({
+			horizontalScrolling: false,
+			verticalOffset: 0,
+			responsive: true
+		});
+	}
+
+};
+
 var Video = {
 
     selector: '[data-video]',
@@ -154,6 +168,78 @@ var Video = {
         }
 
     }
+};
+
+var Carousel = {
+
+	selector: '[data-carousel]',
+	slideSelector: '[data-carousel-slide]',
+	prevSelector: '[data-carousel-prev]',
+	nextSelector: '[data-carousel-next]',
+	contentSelector: '[data-slide-content]',
+	titleSelector: '[data-title]',
+	locationSelector: '[data-location]',
+	captionSelector: '[data-caption]',
+	titleTarget: '[data-slide-title]',
+	locationTarget: '[data-slide-location]',
+	captionTarget: '[data-slide-caption]',
+	captionArray: [],
+
+	init: function() {
+		var $carousel = new Swiper(Carousel.selector, {
+			calculateHeight: true,
+			onSwiperCreated: function (swiper) {
+				swiper.resizeFix();
+				if ($(Carousel.contentSelector).length) {
+					Carousel.storeCaptions(swiper);
+				}
+				Carousel.updateCaption(swiper);
+			},
+			onSlideChangeEnd: function(swiper) {
+				Carousel.updateCaption(swiper);
+			}
+		});
+		// bind pager events once carousel built, pass $carousel
+		Carousel.bindPagerEvents($carousel);
+	},
+
+	bindPagerEvents: function ($carousel) {
+		// prev
+		$(Carousel.prevSelector).on('click', function () {
+			$carousel.swipePrev();
+		});
+		// next
+		$(Carousel.nextSelector).on('click', function () {
+			$carousel.swipeNext();
+		});
+	},
+
+	storeCaptions: function(swiper) {
+		
+		$carousel = $(swiper.container);
+		
+		$(Carousel.slideSelector, $carousel).each(function () {
+			var $this = $(this),
+				data = {
+					title: $(Carousel.titleSelector, $this).html(),
+					location: $(Carousel.locationSelector, $this).html(),
+					caption: $(Carousel.captionSelector, $this).html()
+				};
+
+			Carousel.captionArray.push(data);
+		});
+
+	},
+
+	updateCaption: function(swiper) {
+		var $carousel = $(swiper.container),
+			$captionContainer = $carousel.next(Carousel.contentSelector);
+		
+		$(Carousel.titleTarget, $captionContainer).text(Carousel.captionArray[swiper.activeIndex].title);
+		$(Carousel.locationTarget, $captionContainer).text(Carousel.captionArray[swiper.activeIndex].location);
+		$(Carousel.captionTarget, $captionContainer).text(Carousel.captionArray[swiper.activeIndex].caption);
+	}
+
 };
 
 var Utils = {
@@ -207,9 +293,11 @@ var Main = {
 		Utils.bindResizeEvent();
 		Utils.bindScrollEvent();
 		Utils.setViewportHeight();
-		Layout.init();
 		Menu.bindClickEvent();
+		Layout.init();
+		Stellar.init();
 		Video.init();
+		Carousel.init();
 	}
 
 };
