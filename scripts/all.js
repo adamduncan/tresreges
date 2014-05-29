@@ -1,4 +1,4 @@
-/* TresReges / Adam Duncan / 2014-04-30 */
+/* TresReges / Adam Duncan / 2014-05-02 */
 (function ($) {
 
 	var $event = $.event,
@@ -3555,16 +3555,35 @@ var Menu = {
 	selector: '[data-menu]',
 	sectionSelector: '[data-section]',
 	sectionArray: [],
+	subNavWrapper: '[data-section-nav-wrapper]',
+	subNavSelector: '[data-section-nav]',
+	subNavToggle: '[data-section-toggle]',
+	subSectionSelector: '[data-sub-section]',
+	currentSection: 0,
 	currentClass: 'current',
+	visibleClass: 'is_visible',
 
 	init: function() {
 		Menu.bindClickEvent();
 	},
 
 	bindClickEvent: function () {
+		// primary nav
 		$(Menu.selector + ' > li > a').on('click', function(e) {
 			Utils.smoothScroll($(this).attr('href'));
 			e.preventDefault();	
+		});
+		// secondary nav
+		$(Menu.subNavToggle).on('click', function() {
+			// store ref to $this and list item index
+			var $this = $(this),
+				$thisTabContainer = $this.parents(Menu.sectionSelector),
+				index = $this.parent().index(Menu.subNavSelector + ' li');
+
+			// if clicked button already active, return
+			if ($this.hasClass(Menu.currentClass)) return;
+			// otherwise continue to showTab, passing new current tab index and tab container
+			Menu.showTab(index, $thisTabContainer);
 		});
 	},
 
@@ -3589,11 +3608,29 @@ var Menu = {
 	highlightCurrent: function() {
 		for (var i=0;  i < Menu.sectionArray.length; i++) {
 			if (Menu.sectionArray[i].top <= Utils.scrollPos && Menu.sectionArray[i].bottom-1 >= Utils.scrollPos) {
-				$('li:nth-child(' + (i+1) + ') > a', $(Menu.selector)).addClass(Menu.currentClass);
+				$(Menu.selector + ' > li:nth-child(' + (i+1) + ') > a').addClass(Menu.currentClass);
+				// set current section global
+				Menu.currentSection = i;
+				Menu.toggleSubNav(Menu.currentSection);
 			} else {
-				$('li:nth-child(' + (i+1) + ') > a', $(Menu.selector)).removeClass(Menu.currentClass);
+				$(Menu.selector + ' > li:nth-child(' + (i+1) + ') > a').removeClass(Menu.currentClass);
 			}
 		}
+	},
+
+	toggleSubNav: function(i) {
+		if ($(Menu.subNavWrapper, $(Menu.sectionSelector)[i]).length) {
+			$(Menu.subNavWrapper, $(Menu.sectionSelector)[i]).addClass(Menu.visibleClass);
+		} else {
+			$(Menu.subNavWrapper).removeClass(Menu.visibleClass);
+		}
+	},
+
+	showTab: function (i, $tabContainer) {
+		// remove current classes from tab content and tab button
+		$tabContainer.find('.' + Menu.currentClass).removeClass(Menu.currentClass);
+		// add current class to new tab content and tab button
+		$tabContainer.find($(Menu.subSectionSelector)[i]).add(Menu.subNavToggle, 'li:nth-child(' + (i+1) + ')').addClass(Menu.currentClass);
 	}
 
 };
@@ -3771,6 +3808,9 @@ var Utils = {
 		$('html, body').stop().animate({
 			scrollTop: $(id).offset().top
 		}, 600, AppSettings.easing);
+
+		// check for subnav elements to show, passing current section index
+		Menu.toggleSubNav(Menu.currentSection);
 	}
 
 };

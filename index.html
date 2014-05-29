@@ -34,11 +34,34 @@
 		</div>
 	</div>
 	<div data-section id="the-series" class="section" style="background-image: url(/images/bg-02.jpg)" data-stellar-background-ratio="0.2">
-		<div class="wrapper">
-			<h2>The series</h2>
+		<h2 class="hidden">The series</h2>
+		<div data-section-nav-wrapper class="sub_nav">
+			<div class="wrapper">
+				<ul data-section-nav class="nav_secondary">
+					<li><button data-section-toggle class="current">The Trailer</button></li>
+					<li><button data-section-toggle>Part 1</button></li>
+					<!--<li><button data-section-toggle>Part 2</button></li>
+					<li><button data-section-toggle>Part 3</button></li>
+					<li><button data-section-toggle>Part 4</button></li>-->
+				</ul>
+			</div>
+		</div>
+		<div data-sub-section class="wrapper sub_section current">
+			<h3 class="h2">The Trailer</h3>
 			<div class="video_container" data-video-id="59533437" data-video>
 				<a class="video_anchor" data-video-anchor href="http://www.vimeo.com/59533437">
 					<img src="/images/_placeholder/placeholder-video-720x405.jpg" />
+				</a>
+				<div data-video-frame class="video_frame">
+					<iframe src="" width="720" height="405" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+		<div data-sub-section class="wrapper sub_section">
+			<h3 class="h2">Part 1</h3>
+			<div class="video_container" data-video-id="59533437" data-video>
+				<a class="video_anchor" data-video-anchor href="http://www.vimeo.com/59533437">
+					<img src="/images/_placeholder/placeholder-video-720x405-2.jpg" />
 				</a>
 				<div data-video-frame class="video_frame">
 					<iframe src="" width="720" height="405" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -101,6 +124,7 @@
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="/scripts/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+	<script src="/scripts/vendor/jquery-1.8.3.min.js"></script>
 	<script src="/scripts/all.js"></script>
 </body>
 </html>
