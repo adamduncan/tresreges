@@ -47,7 +47,7 @@
 				}
 			},
 			options: {
-				ignore: [/^.svg/, /^.no-svg/, /^.js/, /^.no-js/, /.current$/, '::-moz-selection', '::selection'],
+				ignore: [/^.svg/, /^.no-svg/, /^.js/, /^.no-js/, /.current$/, /.is_visible$/, '::-moz-selection', '::selection'],
 				ignoreSheets: [/fonts.googleapis/]
 			}
 		},
