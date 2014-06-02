@@ -90,7 +90,7 @@ var Menu = {
 			// store ref to $this and list item index
 			var $this = $(this),
 				$thisTabContainer = $this.parents(Menu.sectionSelector),
-				index = $this.parent().index(Menu.subNavSelector + ' li');
+				index = $this.parent().index();
 
 			// if clicked button already active, return
 			if ($this.hasClass(Menu.currentClass)) return;
@@ -142,7 +142,8 @@ var Menu = {
 		// remove current classes from tab content and tab button
 		$tabContainer.find('.' + Menu.currentClass).removeClass(Menu.currentClass);
 		// add current class to new tab content and tab button
-		$tabContainer.find($(Menu.subSectionSelector)[i]).add(Menu.subNavToggle, 'li:nth-child(' + (i+1) + ')').addClass(Menu.currentClass);
+		$(Menu.subSectionSelector, $tabContainer[0]).eq(i).addClass(Menu.currentClass);
+		$tabContainer.find('li:nth-child(' + (i+1) + ') ' + Menu.subNavToggle).addClass(Menu.currentClass);
 	}
 
 };
@@ -232,6 +233,9 @@ var Carousel = {
 				}
 				Carousel.updateCaption(swiper);
 			},
+			onSlideChangeStart: function(swiper) {
+				Carousel.loadImage(swiper.activeIndex);
+			},
 			onSlideChangeEnd: function(swiper) {
 				Carousel.updateCaption(swiper);
 			}
@@ -249,6 +253,19 @@ var Carousel = {
 		$(Carousel.nextSelector).on('click', function () {
 			$carousel.swipeNext();
 		});
+	},
+
+	loadImage: function(i) {
+		var $nextSlide = $(Carousel.slideSelector).eq(i+1),
+			nextSlideImgSrc = $nextSlide.data('src');
+
+		// refactor to avoid duplicate calls?
+		if (!nextSlideImgSrc) {
+			return;
+		} else {
+			$nextSlide.css('background-image', 'url(' + nextSlideImgSrc + ')').removeAttr('data-src');
+		}
+
 	},
 
 	storeCaptions: function(swiper) {
