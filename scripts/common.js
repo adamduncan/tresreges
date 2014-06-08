@@ -216,7 +216,6 @@ var Carousel = {
 	nextSelector: '[data-carousel-next]',
 	contentSelector: '[data-slide-content]',
 	titleSelector: '[data-title]',
-	locationSelector: '[data-location]',
 	captionSelector: '[data-caption]',
 	titleTarget: '[data-slide-title]',
 	locationTarget: '[data-slide-location]',
@@ -226,6 +225,7 @@ var Carousel = {
 	init: function() {
 		var $carousel = new Swiper(Carousel.selector, {
 			calculateHeight: true,
+			keyboardControl: true,
 			onSwiperCreated: function (swiper) {
 				swiper.resizeFix();
 				if ($(Carousel.contentSelector).length) {
@@ -276,7 +276,6 @@ var Carousel = {
 			var $this = $(this),
 				data = {
 					title: $(Carousel.titleSelector, $this).html(),
-					location: $(Carousel.locationSelector, $this).html(),
 					caption: $(Carousel.captionSelector, $this).html()
 				};
 
@@ -290,7 +289,6 @@ var Carousel = {
 			$captionContainer = $carousel.next(Carousel.contentSelector);
 		
 		$(Carousel.titleTarget, $captionContainer).text(Carousel.captionArray[swiper.activeIndex].title);
-		$(Carousel.locationTarget, $captionContainer).text(Carousel.captionArray[swiper.activeIndex].location);
 		$(Carousel.captionTarget, $captionContainer).text(Carousel.captionArray[swiper.activeIndex].caption);
 	}
 

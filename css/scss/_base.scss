@@ -495,6 +495,7 @@ hr, .hr {
 	box-sizing: content-box;
 }
 .swiper-slide {
+	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	cursor: e-resize;
@@ -546,8 +547,9 @@ hr, .hr {
 	z-index: 1;
 	@include mq($lap) {
 		bottom: 3.125em; /* 50px */
-		min-height: 10em; /* 160px */
 		left: 6.25em; /* 100px */
+		min-height: 7em; /* 112px */
+		padding-right: 1.625em; /* 26px */
 		width: 26.875em; /* 430px */
 	}
 }
