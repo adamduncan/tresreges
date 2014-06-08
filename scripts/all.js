@@ -3836,8 +3836,8 @@ var Main = {
 		Utils.bindResizeEvent();
 		Utils.bindScrollEvent();
 		Utils.setViewportHeight();
-		Menu.bindClickEvent();
 		Layout.init();
+		Menu.bindClickEvent();
 		Stellar.init();
 		Video.init();
 		Carousel.init();
