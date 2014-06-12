@@ -208,6 +208,7 @@ hr, .hr {
 	left: 0;
 	position: absolute;
 	top: 0;
+	width: 100%;
 }
 .section > .v_center {
 	height: auto;
@@ -216,24 +217,39 @@ hr, .hr {
 	@include translate(0, -51%);
 }
 
+@include mq($lap - 1, max) {
+	.section > .palm_relative {
+		top: auto;
+		@include translate(0, 0);
+	}
+}
+
+.sub_section {
+	background-position: center 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 .js .sub_section {
 	display: none;
 }
 .sub_section.current {
 	display: block;
 }
+.sub_section.wrapper {
+	max-width: none;
+}
 
 /* ---------------------------- Intro section */
 .intro_title {
-	font-size: 6.250em; /* 100px */
-	letter-spacing: 0.093em; /* 9px from 100 */
+	font-size: 3.5em; /* 56px */
+	letter-spacing: 0.107em; /* 6px from 56 */
 	line-height: 1;
-	padding-top: 1em; /* 100px from 100 */
+	padding-top: 1.786em; /* 100px from 56 */
 	position: relative;
 	text-shadow: 0 -0.3em 1.5em rgba(0, 0, 0, 0.7);
 	@include mq($lap) {
-		font-size: 9.375em; /* 150px */
-		padding-top: 0.6em; /* 90px from 150 */
+		font-size: 6.375em; /* 102px */
+		padding-top: 1em; /* 102px from 102 */
 	}
 }
 
@@ -243,7 +259,7 @@ hr, .hr {
 	background-repeat: no-repeat;
 	content: '';
 	display: block;
-	height: 0.8em; /* 80px from 100 */
+	height: 80px;
 	position: absolute;
 	top: 0;
 	width: 100%;
@@ -257,6 +273,31 @@ hr, .hr {
 	background-color: rgba(255,255,255,0.8);
 	padding: 1em 0.625em 0.625em; /* 16px 10px 10px */
 }
+
+.fixed_scroll {
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+}
+.fixed_scroll .scroll {
+	max-height: 200px;
+	padding: 1em 3.125em 0.625em 0.625em; /* 16px 100px 10px 10px */
+	/* padding: 1em 6.25em 3.125em 0.625em; 16px 100px 50px 10px */
+	overflow-y: scroll;
+	/*width: 110%;*/
+	@include mq($lap) {
+		max-height: 26.875em; /* 430px */
+	}
+}
+/*.fixed_scroll .scroll:after {
+	content: '';
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	@include box-shadow(0,-60px,60px,-20px,rgba(255,255,255,0.8),true);
+}*/
 
 /* ---------------------------------------- Navigation ---------------------------------------- */
 
@@ -399,7 +440,7 @@ hr, .hr {
 		position: fixed;
 		top: 3.75em;
 		z-index: -1;
-		@include transition(all, 100ms, ease-out, 0ms);
+		@include transition(opacity, 100ms, ease-out, 0ms);
 	}	
 }
 .sub_nav.is_visible {
@@ -407,7 +448,7 @@ hr, .hr {
 		height: 2.5em; /* 40px */
 		opacity: 1;
 		z-index: 2;
-		@include transition(all, 150ms, ease-out, 0ms);
+		@include transition(opacity, 150ms, ease-out, 0ms);
 	}	
 }
 .sub_nav > .wrapper {
@@ -626,13 +667,12 @@ hr, .hr {
 
 /* ---------------------------------------- Links/Buttons ---------------------------------------- */
 
-/* ---------------------------------------- Modules ---------------------------------------- */
-
 /* ---------------------------------------- Videos ---------------------------------------- */
 .video_container {
 	position: relative;
 	text-align: center;
 }
+.image_frame,
 .video_anchor {
 	background-color: #fff;
 	background-color: rgba(255,255,255,0.8);
@@ -650,3 +690,8 @@ hr, .hr {
 	position: absolute;
 	top: 0;
 }
+
+/* ---------------------------------------- Modules ---------------------------------------- */
+.mod_spacer {
+	margin-bottom: 1.875em; /* 30px */
+} 
