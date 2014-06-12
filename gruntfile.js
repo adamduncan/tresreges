@@ -125,7 +125,7 @@
 
 	// Default task(s).
 	grunt.registerTask('default', ['sass', 'cmq', 'concat', 'jshint']);
-	grunt.registerTask('build', ['sass', 'cmq', 'uncss', 'cssmin', 'concat', 'jshint', 'uglify']);
+	grunt.registerTask('build', ['sass', 'cmq', 'cssmin', 'uncss', 'concat', 'jshint', 'uglify']);
 	grunt.registerTask('svg', ['svgmin']);
 
 };

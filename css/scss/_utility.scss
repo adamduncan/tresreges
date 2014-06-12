@@ -63,6 +63,12 @@
 	float: right;
 }
 
+@include mq($lap) {
+	.right_lap {
+		float: right;
+	}
+}
+
 /* --------------------------- Text alignment */
 .text_l {
 	text-align: left;

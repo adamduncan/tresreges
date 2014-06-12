@@ -1,4 +1,4 @@
-/* TresReges / Adam Duncan / 2014-06-08 */
+/* TresReges / Adam Duncan / 2014-06-12 */
 (function ($) {
 
 	var $event = $.event,
@@ -3559,6 +3559,7 @@ var Menu = {
 	subNavSelector: '[data-section-nav]',
 	subNavToggle: '[data-section-toggle]',
 	subSectionSelector: '[data-sub-section]',
+	offset: 100,
 	currentSection: 0,
 	currentClass: 'current',
 	visibleClass: 'is_visible',
@@ -3593,8 +3594,8 @@ var Menu = {
 		// loop through and create new object for each section, pushing to array
 		$(Menu.sectionSelector).each(function() {
 			var $this = $(this),
-				sectionTop = $this.position().top,
-				sectionBottom = sectionTop + $this.outerHeight(),
+				sectionTop = $this.position().top - Menu.offset,
+				sectionBottom = sectionTop + $this.outerHeight() - Menu.offset,
 				obj = {
 					top: sectionTop,
 					bottom: sectionBottom
@@ -3607,7 +3608,7 @@ var Menu = {
 
 	highlightCurrent: function() {
 		for (var i=0;  i < Menu.sectionArray.length; i++) {
-			if (Menu.sectionArray[i].top <= Utils.scrollPos && Menu.sectionArray[i].bottom-1 >= Utils.scrollPos) {
+			if (Menu.sectionArray[i].top - Menu.offset <= Utils.scrollPos && Menu.sectionArray[i].bottom + Menu.offset - 1 >= Utils.scrollPos) {
 				$(Menu.selector + ' > li:nth-child(' + (i+1) + ') > a').addClass(Menu.currentClass);
 				// set current section global
 				Menu.currentSection = i;
