@@ -1,4 +1,4 @@
-/* TresReges / Adam Duncan / 2014-06-12 */
+/* TresReges / Adam Duncan / 2014-06-27 */
 (function ($) {
 
 	var $event = $.event,
@@ -3496,7 +3496,8 @@ if (typeof define === 'function' && define.amd) {
 var AppSettings = {
 	DEBUGMODE: true, //change to turn on/off console.log statements
 	scrollPos: 0,
-	easing: 'easeOutQuad'
+	easing: 'easeOutQuad',
+	bpLap: 942
 };
 
 var Debug = {
@@ -3539,13 +3540,16 @@ var Layout = {
 
 	sectionSelector: '[data-section]',
 	carouselSlideSelector: '[data-carousel-slide]',
+	fluidHeightSelector: '[data-fluid-height]',
 
 	init: function() {
-		$(Layout.sectionSelector).each(function() {
-			var $this = $(this);
-			$this.css('height', Utils.viewportHeight);
-		});
-		$(Layout.carouselSlideSelector).css('height', Utils.viewportHeight);
+		if(matchMedia('only screen and (min-width: ' + AppSettings.bpLap + 'px)').matches) {
+			$(Layout.sectionSelector).not(Layout.fluidHeightSelector).each(function() {
+				var $this = $(this);
+				$this.css('height', Utils.viewportHeight);
+			});
+			$(Layout.carouselSlideSelector).css('height', Utils.viewportHeight);
+		}
 	}
 
 };
@@ -3640,11 +3644,14 @@ var Menu = {
 var Stellar = {
 
 	init: function() {
-		$.stellar({
-			horizontalScrolling: false,
-			verticalOffset: 0,
-			responsive: true
-		});
+		// don't add this for touch devices, that's silly
+		if (!Modernizr.touch) {
+			$.stellar({
+				horizontalScrolling: false,
+				verticalOffset: 0,
+				responsive: true
+			});
+		}
 	}
 
 };
@@ -3787,6 +3794,7 @@ var Utils = {
 
 	viewportHeight: 0,
 	scrollPos: 0,
+	smoothSelector: '[data-smooth]',
 
 	bindResizeEvent: function() {
 		$(window).on('load debouncedresize', function() {
@@ -3820,6 +3828,13 @@ var Utils = {
 		Utils.scrollPos = $(window).scrollTop();
 	},
 
+	bindSmoothScroll: function() {
+		$(Utils.smoothSelector).on('click', function (e) {
+			Utils.smoothScroll($(this).attr('href'));
+			e.preventDefault();
+		});
+	},
+
 	smoothScroll: function(id) {
 		$('html, body').stop().animate({
 			scrollTop: $(id).offset().top
@@ -3837,6 +3852,7 @@ var Main = {
 		Utils.bindResizeEvent();
 		Utils.bindScrollEvent();
 		Utils.setViewportHeight();
+		Utils.bindSmoothScroll();
 		Layout.init();
 		Menu.bindClickEvent();
 		Stellar.init();

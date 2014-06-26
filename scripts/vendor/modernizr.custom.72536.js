@@ -1,5 +1,5 @@
-/* Modernizr 2.7.2 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-csstransforms-csstransforms3d-csstransitions-svg-cssclasses-teststyles-testprop-testallprops-prefixes-domprefixes
+/* Modernizr 2.8.2 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-csstransforms-csstransforms3d-csstransitions-svg-touch-cssclasses-teststyles-testprop-testallprops-prefixes-domprefixes
  */
 ;
 
@@ -7,7 +7,7 @@
 
 window.Modernizr = (function( window, document, undefined ) {
 
-    var version = '2.7.2',
+    var version = '2.8.2',
 
     Modernizr = {},
 
@@ -196,7 +196,20 @@ window.Modernizr = (function( window, document, undefined ) {
           props = (prop + ' ' + (domPrefixes).join(ucProp + ' ') + ucProp).split(' ');
           return testDOMProps(props, prefixed, elem);
         }
-    }
+    }    tests['touch'] = function() {
+        var bool;
+
+        if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+          bool = true;
+        } else {
+          injectElementWithStyles(['@media (',prefixes.join('touch-enabled),('),mod,')','{#modernizr{top:9px;position:absolute}}'].join(''), function( node ) {
+            bool = node.offsetTop === 9;
+          });
+        }
+
+        return bool;
+    };
+
 
 
     tests['csstransforms'] = function() {
