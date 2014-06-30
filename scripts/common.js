@@ -48,6 +48,23 @@ var Debug = {
 
 };
 
+var Countdown = {
+
+	selector: '[data-countdown]',
+
+	init: function() {
+		var today = new Date(),
+			targetDate = new Date("July 11, 2014"),
+			msPerDay = 24 * 60 * 60 * 1000,
+			timeLeft = (targetDate.getTime() - today.getTime()),
+			e_daysLeft = timeLeft / msPerDay,
+			daysLeft = Math.floor(e_daysLeft);
+		// update html
+		$(Countdown.selector).html(daysLeft + ' days to go');
+	}
+
+};
+
 var Layout = {
 
 	sectionSelector: '[data-section]',
@@ -113,6 +130,7 @@ var Menu = {
 				sectionTop = $this.position().top - Menu.offset,
 				sectionBottom = sectionTop + $this.outerHeight() - Menu.offset,
 				obj = {
+					id: $this.attr('id'),
 					top: sectionTop,
 					bottom: sectionBottom
 				};
@@ -129,6 +147,8 @@ var Menu = {
 				// set current section global
 				Menu.currentSection = i;
 				Menu.toggleSubNav(Menu.currentSection);
+				// update hash
+				//Utils.updateHash(Menu.sectionArray[i].id);
 			} else {
 				$(Menu.selector + ' > li:nth-child(' + (i+1) + ') > a').removeClass(Menu.currentClass);
 			}
@@ -146,9 +166,24 @@ var Menu = {
 	showTab: function (i, $tabContainer) {
 		// remove current classes from tab content and tab button
 		$tabContainer.find('.' + Menu.currentClass).removeClass(Menu.currentClass);
+		// check for video and pause
+		Menu.pauseVideo($tabContainer);
 		// add current class to new tab content and tab button
 		$(Menu.subSectionSelector, $tabContainer[0]).eq(i).addClass(Menu.currentClass);
 		$tabContainer.find('li:nth-child(' + (i+1) + ') ' + Menu.subNavToggle).addClass(Menu.currentClass);
+	},
+
+	pauseVideo: function($tabContainer) {
+		// frogaloop
+		// http://css-tricks.com/play-button-youtube-and-vimeo-api/
+		if($tabContainer.find('iframe').length) {
+			$tabContainer.find('iframe').each(function(i) {
+				var $this = $(this);
+				if ($this.attr('src')) {
+					$f($this[0]).api('pause');
+				}
+			});
+		}
 	}
 
 };
@@ -307,6 +342,15 @@ var Utils = {
 	viewportHeight: 0,
 	scrollPos: 0,
 	smoothSelector: '[data-smooth]',
+	readyClass: 'ready',
+
+	loadEvent: function() {
+		$(window).on('load', function() {
+			setTimeout(function () {
+				$('body').addClass(Utils.readyClass);
+			}, 400);
+		});
+	},
 
 	bindResizeEvent: function() {
 		$(window).on('load debouncedresize', function() {
@@ -350,10 +394,16 @@ var Utils = {
 	smoothScroll: function(id) {
 		$('html, body').stop().animate({
 			scrollTop: $(id).offset().top
-		}, 600, AppSettings.easing);
+		}, 600, AppSettings.easing).promise().then(function() {
+			Utils.updateHash(id.substring(-1));
+		});
 
 		// check for subnav elements to show, passing current section index
 		Menu.toggleSubNav(Menu.currentSection);
+	},
+
+	updateHash: function(id) {
+		window.location.hash = id; 
 	}
 
 };
@@ -361,10 +411,12 @@ var Utils = {
 var Main = {
 
 	run: function () {
+		Utils.loadEvent();
 		Utils.bindResizeEvent();
 		Utils.bindScrollEvent();
 		Utils.setViewportHeight();
 		Utils.bindSmoothScroll();
+		Countdown.init();
 		Layout.init();
 		Menu.bindClickEvent();
 		Stellar.init();

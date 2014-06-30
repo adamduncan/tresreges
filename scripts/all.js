@@ -1,4 +1,4 @@
-/* TresReges / Adam Duncan / 2014-06-27 */
+/* TresReges / Adam Duncan / 2014-06-30 */
 (function ($) {
 
 	var $event = $.event,
@@ -43,6 +43,10 @@ jQuery.extend(jQuery.easing, {
 		return -c * (t /= d) * (t - 2) + b;
 	}
 });
+var Froogaloop=function(){function e(a){return new e.fn.init(a)}function h(a,c,b){if(!b.contentWindow.postMessage)return!1;var f=b.getAttribute("src").split("?")[0],a=JSON.stringify({method:a,value:c});"//"===f.substr(0,2)&&(f=window.location.protocol+f);b.contentWindow.postMessage(a,f)}function j(a){var c,b;try{c=JSON.parse(a.data),b=c.event||c.method}catch(f){}"ready"==b&&!i&&(i=!0);if(a.origin!=k)return!1;var a=c.value,e=c.data,g=""===g?null:c.player_id;c=g?d[g][b]:d[b];b=[];if(!c)return!1;void 0!==
+a&&b.push(a);e&&b.push(e);g&&b.push(g);return 0<b.length?c.apply(null,b):c.call()}function l(a,c,b){b?(d[b]||(d[b]={}),d[b][a]=c):d[a]=c}var d={},i=!1,k="";e.fn=e.prototype={element:null,init:function(a){"string"===typeof a&&(a=document.getElementById(a));this.element=a;a=this.element.getAttribute("src");"//"===a.substr(0,2)&&(a=window.location.protocol+a);for(var a=a.split("/"),c="",b=0,f=a.length;b<f;b++){if(3>b)c+=a[b];else break;2>b&&(c+="/")}k=c;return this},api:function(a,c){if(!this.element||
+!a)return!1;var b=this.element,f=""!==b.id?b.id:null,d=!c||!c.constructor||!c.call||!c.apply?c:null,e=c&&c.constructor&&c.call&&c.apply?c:null;e&&l(a,e,f);h(a,d,b);return this},addEvent:function(a,c){if(!this.element)return!1;var b=this.element,d=""!==b.id?b.id:null;l(a,c,d);"ready"!=a?h("addEventListener",a,b):"ready"==a&&i&&c.call(null,d);return this},removeEvent:function(a){if(!this.element)return!1;var c=this.element,b;a:{if((b=""!==c.id?c.id:null)&&d[b]){if(!d[b][a]){b=!1;break a}d[b][a]=null}else{if(!d[a]){b=
+!1;break a}d[a]=null}b=!0}"ready"!=a&&b&&h("removeEventListener",a,c)}};e.fn.init.prototype=e.fn;window.addEventListener?window.addEventListener("message",j,!1):window.attachEvent("onmessage",j);return window.Froogaloop=window.$f=e}();
 /*!
  * Stellar.js v0.6.2
  * http://markdalgleish.com/projects/stellar.js
@@ -3536,6 +3540,23 @@ var Debug = {
 
 };
 
+var Countdown = {
+
+	selector: '[data-countdown]',
+
+	init: function() {
+		var today = new Date(),
+			targetDate = new Date("July 11, 2014"),
+			msPerDay = 24 * 60 * 60 * 1000,
+			timeLeft = (targetDate.getTime() - today.getTime()),
+			e_daysLeft = timeLeft / msPerDay,
+			daysLeft = Math.floor(e_daysLeft);
+		// update html
+		$(Countdown.selector).html(daysLeft + ' days to go');
+	}
+
+};
+
 var Layout = {
 
 	sectionSelector: '[data-section]',
@@ -3601,6 +3622,7 @@ var Menu = {
 				sectionTop = $this.position().top - Menu.offset,
 				sectionBottom = sectionTop + $this.outerHeight() - Menu.offset,
 				obj = {
+					id: $this.attr('id'),
 					top: sectionTop,
 					bottom: sectionBottom
 				};
@@ -3617,6 +3639,8 @@ var Menu = {
 				// set current section global
 				Menu.currentSection = i;
 				Menu.toggleSubNav(Menu.currentSection);
+				// update hash
+				//Utils.updateHash(Menu.sectionArray[i].id);
 			} else {
 				$(Menu.selector + ' > li:nth-child(' + (i+1) + ') > a').removeClass(Menu.currentClass);
 			}
@@ -3634,9 +3658,24 @@ var Menu = {
 	showTab: function (i, $tabContainer) {
 		// remove current classes from tab content and tab button
 		$tabContainer.find('.' + Menu.currentClass).removeClass(Menu.currentClass);
+		// check for video and pause
+		Menu.pauseVideo($tabContainer);
 		// add current class to new tab content and tab button
 		$(Menu.subSectionSelector, $tabContainer[0]).eq(i).addClass(Menu.currentClass);
 		$tabContainer.find('li:nth-child(' + (i+1) + ') ' + Menu.subNavToggle).addClass(Menu.currentClass);
+	},
+
+	pauseVideo: function($tabContainer) {
+		// frogaloop
+		// http://css-tricks.com/play-button-youtube-and-vimeo-api/
+		if($tabContainer.find('iframe').length) {
+			$tabContainer.find('iframe').each(function(i) {
+				var $this = $(this);
+				if ($this.attr('src')) {
+					$f($this[0]).api('pause');
+				}
+			});
+		}
 	}
 
 };
@@ -3795,6 +3834,15 @@ var Utils = {
 	viewportHeight: 0,
 	scrollPos: 0,
 	smoothSelector: '[data-smooth]',
+	readyClass: 'ready',
+
+	loadEvent: function() {
+		$(window).on('load', function() {
+			setTimeout(function () {
+				$('body').addClass(Utils.readyClass);
+			}, 400);
+		});
+	},
 
 	bindResizeEvent: function() {
 		$(window).on('load debouncedresize', function() {
@@ -3838,10 +3886,16 @@ var Utils = {
 	smoothScroll: function(id) {
 		$('html, body').stop().animate({
 			scrollTop: $(id).offset().top
-		}, 600, AppSettings.easing);
+		}, 600, AppSettings.easing).promise().then(function() {
+			Utils.updateHash(id.substring(-1));
+		});
 
 		// check for subnav elements to show, passing current section index
 		Menu.toggleSubNav(Menu.currentSection);
+	},
+
+	updateHash: function(id) {
+		window.location.hash = id; 
 	}
 
 };
@@ -3849,10 +3903,12 @@ var Utils = {
 var Main = {
 
 	run: function () {
+		Utils.loadEvent();
 		Utils.bindResizeEvent();
 		Utils.bindScrollEvent();
 		Utils.setViewportHeight();
 		Utils.bindSmoothScroll();
+		Countdown.init();
 		Layout.init();
 		Menu.bindClickEvent();
 		Stellar.init();

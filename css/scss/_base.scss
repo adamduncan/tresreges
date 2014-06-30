@@ -12,13 +12,16 @@ html {
 	overflow-y: scroll;
 }
 body {
+	background: url(/images/ajax-loader.gif) no-repeat center center;
 	color: #000;
 	font-family: $baseFont, Helvetica, Arial, sans-serif;
 	font-size: 100%; /* 16px */
 	line-height: 1.250; /* 20px */
 	height: 100%;
 }
-
+body.ready {
+	background-image: none;
+}
 
 
 /* ---------------------------------------- Base ---------------------------------------- */
@@ -206,6 +209,14 @@ hr, .hr {
 		padding: 3.75em 0;
 	}
 }
+.js .section {
+	opacity: 0;
+	@include transition(opacity, 300ms, ease-out, 0ms);
+}
+.js .ready .section {
+	opacity: 1;
+}
+
 @include mq($lap - 1, max) {
 	/* mobile hacks, to refactor */
 	.section.padding_t_0 {
@@ -637,6 +648,13 @@ hr, .hr {
 	overflow: hidden;
 	text-indent: 200%;
 	width: 1em; /* inherit */
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	@include transition(opacity, 300ms, ease-out, 0ms);
+}
+[class*="icon_"]:hover,
+[class*="icon_"]:focus {
+	opacity: 0.9;
 }
 .icon_email {
 	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23000100%22%20d%3D%22M21%200h-18c-1.649%200-3%201.35-3%203v18c0%201.649%201.351%203%203%203h18c1.65%200%203-1.351%203-3v-18c0-1.65-1.35-3-3-3zm-1.027%206.469l-7.972%206.748-7.888-6.748h15.86zm.12%2011.061h-16.186v-9.115l8.092%206.92%208.094-6.853v9.048z%22/%3E%3C/svg%3E');
@@ -715,6 +733,13 @@ hr, .hr {
 	padding: 0.313em; /* 5px */
 	position: absolute;
 	top: 0;
+}
+.video_anchor img {
+	@include transition(opacity, 150ms, ease-out, 0s);
+}
+a.video_anchor:hover img,
+a.video_anchor:focus img {
+	opacity: 0.9;
 }
 
 /* ---------------------------------------- Modules ---------------------------------------- */

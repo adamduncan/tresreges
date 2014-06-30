@@ -47,7 +47,7 @@
 				}
 			},
 			options: {
-				ignore: [/^.svg/, /^.no-svg/, /^.js/, /^.no-js/, /.current$/, /.is_visible$/, '::-moz-selection', '::selection'],
+				ignore: [/^.svg/, /^.no-svg/, /^.js/, /^.no-js/, /.current$/, /.is_visible$/, /.ready$/, '::-moz-selection', '::selection'],
 				ignoreSheets: [/fonts.googleapis/]
 			}
 		},
@@ -70,6 +70,7 @@
 				src: [
 					'scripts/vendor/jquery.debouncedresize.js',
 					'scripts/vendor/jquery.easing.custom.js',
+					'scripts/vendor/froogaloop.min.js',
 					'scripts/vendor/jquery.stellar.js',
 					'scripts/vendor/idangerous.swiper.js',
 					'scripts/common.js'
