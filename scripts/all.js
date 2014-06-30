@@ -3546,7 +3546,7 @@ var Countdown = {
 
 	init: function() {
 		var today = new Date(),
-			targetDate = new Date("July 11, 2014"),
+			targetDate = new Date("July 12, 2014"),
 			msPerDay = 24 * 60 * 60 * 1000,
 			timeLeft = (targetDate.getTime() - today.getTime()),
 			e_daysLeft = timeLeft / msPerDay,
