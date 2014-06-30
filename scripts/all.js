@@ -1,4 +1,4 @@
-/* TresReges / Adam Duncan / 2014-06-30 */
+/* TresReges / Adam Duncan / 2014-07-01 */
 (function ($) {
 
 	var $event = $.event,
