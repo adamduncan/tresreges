@@ -416,7 +416,7 @@ var Main = {
 		Utils.bindScrollEvent();
 		Utils.setViewportHeight();
 		Utils.bindSmoothScroll();
-		Countdown.init();
+		//Countdown.init();
 		Layout.init();
 		Menu.bindClickEvent();
 		Stellar.init();
